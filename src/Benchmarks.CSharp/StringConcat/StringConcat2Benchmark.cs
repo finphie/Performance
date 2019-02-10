@@ -3,8 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
-using BitbankDotNet.InternalShared.Extensions;
-using BitbankDotNet.InternalShared.Helpers;
+using Benchmarks.CSharp.Extensions;
+using Benchmarks.CSharp.Helpers;
 
 namespace Benchmarks.CSharp.StringConcat
 {

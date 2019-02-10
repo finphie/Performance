@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using BenchmarkDotNet.Attributes;
-using BitbankDotNet.InternalShared.Helpers;
+using Benchmarks.CSharp.Helpers;
 
 namespace Benchmarks.CSharp
 {
