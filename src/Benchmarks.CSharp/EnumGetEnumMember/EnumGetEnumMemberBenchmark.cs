@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using BenchmarkDotNet.Attributes;
 using EnumsNET;
 
-namespace BitbankDotNet.Benchmarks.EnumGetEnumMember
+namespace Benchmarks.CSharp.EnumGetEnumMember
 {
     /// <summary>
     /// EnumMemberを取得する処理のベンチマーク

@@ -3,7 +3,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace BitbankDotNet.Benchmarks.StringConcat
+namespace Benchmarks.CSharp.StringConcat
 {
     partial class BinaryHelper
     {

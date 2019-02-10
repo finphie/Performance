@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 using EnumsNET;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     /// enumの値を取得

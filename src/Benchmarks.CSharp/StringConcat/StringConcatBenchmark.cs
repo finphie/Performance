@@ -7,7 +7,7 @@ using BenchmarkDotNet.Attributes;
 using BitbankDotNet.InternalShared.Extensions;
 using BitbankDotNet.InternalShared.Helpers;
 
-namespace BitbankDotNet.Benchmarks.StringConcat
+namespace Benchmarks.CSharp.StringConcat
 {
     /// <summary>
     /// 文字列連結処理のベンチマーク

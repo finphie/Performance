@@ -3,7 +3,7 @@ using System.Buffers;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     /// UTF-16文字列からUTF-8Byte配列に変換

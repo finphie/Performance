@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     /// byte配列をコピーする処理のベンチマーク

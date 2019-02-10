@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Xml.Serialization;
 
-namespace BitbankDotNet.Benchmarks.ByteArrayToHexString
+namespace Benchmarks.CSharp.ByteArrayToHexString
 {
     [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "XmlSerializationWriter.FromByteArrayHexを利用")]
     sealed class ByteArrayHelperXmlSerializationWriter : XmlSerializationWriter

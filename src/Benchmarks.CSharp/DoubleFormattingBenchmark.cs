@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     /// doubleをstringに変換

@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     ///  指定したURLからbyte配列を取得する処理のベンチマーク

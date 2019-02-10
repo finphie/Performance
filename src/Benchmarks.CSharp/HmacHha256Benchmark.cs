@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using BenchmarkDotNet.Attributes;
 using BitbankDotNet.InternalShared.Helpers;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     [Config(typeof(BenchmarkConfig))]
     public class HmacHha256Benchmark : IDisposable

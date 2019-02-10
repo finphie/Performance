@@ -17,7 +17,7 @@ using BenchmarkDotNet.Toolchains.DotNetCli;
 #endif
 using System.Diagnostics.CodeAnalysis;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "BenchmarkDotNetで使用される")]
     class BenchmarkConfig : ManualConfig

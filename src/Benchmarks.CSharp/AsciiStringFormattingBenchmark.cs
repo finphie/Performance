@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     /// ASCII文字列をUTF-8のbyte配列に変換する処理のベンチマーク

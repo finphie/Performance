@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     class Program
     {

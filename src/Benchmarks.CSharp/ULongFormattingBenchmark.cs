@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     /// ulongをUTF-8のbyte配列に変換する処理のベンチマーク

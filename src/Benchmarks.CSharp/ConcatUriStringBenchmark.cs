@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Web;
 using BenchmarkDotNet.Attributes;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     /// URI文字列連結処理のベンチマーク

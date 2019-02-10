@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
-namespace BitbankDotNet.Benchmarks.EnumGetEnumMember
+namespace Benchmarks.CSharp.EnumGetEnumMember
 {
     static class EnumHelper
     {

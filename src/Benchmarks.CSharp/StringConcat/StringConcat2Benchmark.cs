@@ -6,7 +6,7 @@ using BenchmarkDotNet.Attributes;
 using BitbankDotNet.InternalShared.Extensions;
 using BitbankDotNet.InternalShared.Helpers;
 
-namespace BitbankDotNet.Benchmarks.StringConcat
+namespace Benchmarks.CSharp.StringConcat
 {
     [Config(typeof(BenchmarkConfig))]
     [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1132:Do not combine fields", Justification = "自動生成コード")]

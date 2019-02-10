@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using BenchmarkDotNet.Attributes;
 
-namespace BitbankDotNet.Benchmarks
+namespace Benchmarks.CSharp
 {
     /// <summary>
     /// GetHashCodeのベンチマーク
