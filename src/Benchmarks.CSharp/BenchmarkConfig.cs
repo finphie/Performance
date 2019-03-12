@@ -1,4 +1,5 @@
 ﻿#define Core22
+#define Core30
 
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
@@ -34,9 +35,7 @@ namespace Benchmarks.CSharp
             Add(Job.Default.With(CsProjCoreToolchain.NetCoreApp22));
 #endif
 #if Core30
-            Add(Job.Default.With(
-                CsProjCoreToolchain.From(
-                    new NetCoreAppSettings("netcoreapp3.0", "3.0.0-*", ".NET Core 3.0"))));
+            Add(Job.Default.With(CsProjCoreToolchain.NetCoreApp30));
 #endif
 #if CoreRt
             // CoreRT（RyuJIT利用）
