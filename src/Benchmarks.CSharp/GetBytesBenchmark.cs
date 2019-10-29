@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Buffers;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Unicode;
 using BenchmarkDotNet.Attributes;
 
 namespace Benchmarks.CSharp
@@ -8,77 +9,38 @@ namespace Benchmarks.CSharp
     /// <summary>
     /// UTF-16文字列からUTF-8Byte配列に変換
     /// </summary>
-    /// <remarks>
-    /// .Net Core 2.1ではSpanベースのEncoding.GetBytesは遅い（.Net Core 3.0で改善）
-    /// cf. https://github.com/dotnet/corefx/issues/30382
-    /// </remarks>
     [Config(typeof(BenchmarkConfig))]
     public class GetBytesBenchmark
     {
-        const int BufferSize = DataLength * 3;
-        const int DataLength = 64;
-        readonly string _data = new string('a', DataLength);
+        readonly string _data = Guid.NewGuid().ToString();
+        readonly byte[] _buffer;
+
+        public GetBytesBenchmark() => _buffer = new byte[_data.Length * 3];
 
         [Benchmark]
-        public byte[] Array()
-            => Encoding.UTF8.GetBytes(_data);
+        public void Array() => Encoding.UTF8.GetBytes(_data, 0, _data.Length, _buffer, 0);
 
         [Benchmark]
-        public byte[] SpanStackAlloc()
+        public void Span() => Encoding.UTF8.GetBytes(_data, _buffer);
+
+        [Benchmark]
+        public unsafe void UnsafeSpan()
         {
-            Span<byte> buffer = stackalloc byte[BufferSize];
-            var length = Encoding.UTF8.GetBytes(_data, buffer);
-            return buffer.Slice(0, length).ToArray();
-        }
-
-        [Benchmark]
-        public byte[] SpanArrayPool()
-        {
-            var buffer = ArrayPool<byte>.Shared.Rent(BufferSize);
-            try
-            {
-                var span = buffer.AsSpan();
-                var length = Encoding.UTF8.GetBytes(_data, span);
-                return span.Slice(0, length).ToArray();
-            }
-            finally
-            {
-                if (buffer != null)
-                    ArrayPool<byte>.Shared.Return(buffer);
-            }
-        }
-
-        [Benchmark]
-        public unsafe byte[] UnsafeStackAlloc()
-        {
-            Span<byte> buffer = stackalloc byte[BufferSize];
             fixed (char* chars = _data)
-            fixed (byte* bytes = buffer)
-            {
-                var length = Encoding.UTF8.GetBytes(chars, _data.Length, bytes, BufferSize);
-                return buffer.Slice(0, length).ToArray();
-            }
+            fixed (byte* bytes = _buffer.AsSpan())
+                Encoding.UTF8.GetBytes(chars, _data.Length, bytes, _buffer.Length);
         }
 
         [Benchmark]
-        public unsafe byte[] UnsafeArrayPool()
+        public unsafe void Unsafe()
         {
-            var buffer = ArrayPool<byte>.Shared.Rent(BufferSize);
-            try
-            {
-                var span = buffer.AsSpan();
-                fixed (char* chars = _data)
-                fixed (byte* bytes = span)
-                {
-                    var length = Encoding.UTF8.GetBytes(chars, _data.Length, bytes, BufferSize);
-                    return span.Slice(0, length).ToArray();
-                }
-            }
-            finally
-            {
-                if (buffer != null)
-                    ArrayPool<byte>.Shared.Return(buffer);
-            }
+            fixed (char* chars = _data)
+            fixed (byte* bytes = _buffer)
+                Encoding.UTF8.GetBytes(chars, _data.Length, bytes, _buffer.Length);
         }
+
+        [Benchmark]
+        public void OperationStatusBased()
+            => _ = Utf8.FromUtf16(_data, _buffer, out _, out _);
     }
 }
