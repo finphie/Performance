@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using BenchmarkDotNet.Attributes;
 using EnumsNET;
+using FastEnumUtility;
 
 namespace Benchmarks.CSharp.EnumGetEnumMember
 {
@@ -50,5 +51,9 @@ namespace Benchmarks.CSharp.EnumGetEnumMember
         [Benchmark]
         public string EnumsNet()
             => TestEnum.A.GetAttributes().Get<EnumMemberAttribute>().Value;
+
+        [Benchmark]
+        public string FastEnum()
+            => TestEnum.A.GetEnumMemberValue();
     }
 }
