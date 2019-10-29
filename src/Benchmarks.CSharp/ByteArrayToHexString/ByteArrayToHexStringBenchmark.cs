@@ -142,10 +142,10 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
         }
 
         [Benchmark]
-        public string LookupShift()
+        public string LookupShift1()
         {
-            const string table = "0123456789abcdef";
-            ref var tableStart = ref MemoryMarshal.GetReference(table.AsSpan());
+            ReadOnlySpan<char> table = "0123456789abcdef";
+            ref var tableStart = ref MemoryMarshal.GetReference(table);
             var result = new string(default, SourceBytes.Length * 2);
             ref var resultStart = ref MemoryMarshal.GetReference(result.AsSpan());
             var i = 0;
@@ -153,6 +153,23 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             {
                 Unsafe.Add(ref resultStart, i++) = Unsafe.Add(ref tableStart, sourceByte >> 0b0100);
                 Unsafe.Add(ref resultStart, i++) = Unsafe.Add(ref tableStart, sourceByte & 0b1111);
+            }
+
+            return result;
+        }
+
+        [Benchmark]
+        public string LookupShift2()
+        {
+            ReadOnlySpan<char> table = "0123456789abcdef";
+            ref var tableStart = ref MemoryMarshal.GetReference(table);
+            var result = new string(default, SourceBytes.Length * 2);
+            ref var resultStart = ref MemoryMarshal.GetReference(result.AsSpan());
+            var i = -1;
+            foreach (var sourceByte in SourceBytes)
+            {
+                Unsafe.Add(ref resultStart, ++i) = Unsafe.Add(ref tableStart, sourceByte >> 0b0100);
+                Unsafe.Add(ref resultStart, ++i) = Unsafe.Add(ref tableStart, sourceByte & 0b1111);
             }
 
             return result;
