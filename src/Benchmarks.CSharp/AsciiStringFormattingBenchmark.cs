@@ -34,12 +34,40 @@ namespace Benchmarks.CSharp
 
         [Benchmark]
         [ArgumentsSource(nameof(Values))]
-        public byte[] Cast(string value)
+        public byte[] Cast1(string value)
         {
             ref var valueStart = ref MemoryMarshal.GetReference(value.AsSpan());
             var byteBuffer = new byte[value.Length];
             for (var i = 0; i < byteBuffer.Length; i++)
                 byteBuffer[i] = (byte)Unsafe.Add(ref valueStart, i);
+
+            return byteBuffer;
+        }
+
+        [Benchmark]
+        [ArgumentsSource(nameof(Values))]
+        public byte[] Cast2(string value)
+        {
+            ref var valueStart = ref MemoryMarshal.GetReference(value.AsSpan());
+            var byteBuffer = new byte[value.Length];
+            for (var i = 0; i < byteBuffer.Length; i++)
+                byteBuffer[i] = (byte)Unsafe.AddByteOffset(ref valueStart, (IntPtr)(i * sizeof(char)));
+
+            return byteBuffer;
+        }
+
+        [Benchmark]
+        [ArgumentsSource(nameof(Values))]
+        public byte[] Cast3(string value)
+        {
+            ref var valueStart = ref MemoryMarshal.GetReference(value.AsSpan());
+            var byteBuffer = new byte[value.Length];
+
+            for (var i = 0; i < byteBuffer.Length; i++)
+            {
+                byteBuffer[i] = (byte)valueStart;
+                valueStart = ref Unsafe.AddByteOffset(ref valueStart, (IntPtr)sizeof(char));
+            }
 
             return byteBuffer;
         }
