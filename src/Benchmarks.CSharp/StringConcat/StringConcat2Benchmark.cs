@@ -80,7 +80,7 @@ namespace Benchmarks.CSharp.StringConcat
         [GlobalSetup]
         public void Setup()
         {
-            string[] CreateUtf16Strings(int length) => StringHelper.CreateUtf16Strings(2, length);
+            static string[] CreateUtf16Strings(int length) => StringHelper.CreateUtf16Strings(2, length);
 
             (_source1A, _source1B) = CreateUtf16Strings(1);
             _length1 = (uint)_source1A.Length * 2;

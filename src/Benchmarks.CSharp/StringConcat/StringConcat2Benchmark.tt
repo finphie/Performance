@@ -26,7 +26,7 @@ namespace Benchmarks.CSharp.StringConcat
         [GlobalSetup]
         public void Setup()
         {
-            string[] CreateUtf16Strings(int length) => StringHelper.CreateUtf16Strings(2, length);
+            static string[] CreateUtf16Strings(int length) => StringHelper.CreateUtf16Strings(2, length);
 
 <# for (var i = Min; i <= Max; i++) { #>
 <#

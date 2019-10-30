@@ -17,7 +17,7 @@ namespace Benchmarks.CSharp.Helpers
         public static string CreateUtf16String(int length)
         {
             // UTF-16文字列作成
-            string CreateUtf16String() => Guid.NewGuid().ToString("N");
+            static string CreateUtf16String() => Guid.NewGuid().ToString("N");
 
             var sb = new StringBuilder(64);
             sb.Append(CreateUtf16String());
