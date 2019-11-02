@@ -1,9 +1,11 @@
-﻿#define Core22
-#define Core30
+﻿#define Core30
 
+using System.Diagnostics.CodeAnalysis;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
+using BenchmarkDotNet.Toolchains.CsProj;
+
 #if CoreRt || CoreRtCpp
 using BenchmarkDotNet.Environments;
 #endif
@@ -12,11 +14,6 @@ using BenchmarkDotNet.Jobs;
 #if CoreRtCpp
 using BenchmarkDotNet.Toolchains.CoreRt;
 #endif
-using BenchmarkDotNet.Toolchains.CsProj;
-#if Core30
-using BenchmarkDotNet.Toolchains.DotNetCli;
-#endif
-using System.Diagnostics.CodeAnalysis;
 
 namespace Benchmarks.CSharp
 {
@@ -31,9 +28,6 @@ namespace Benchmarks.CSharp
             Add(CategoriesColumn.Default);
             Add(DisassemblyDiagnoser.Create(new DisassemblyDiagnoserConfig(printSource: true)));
 
-#if Core22
-            Add(Job.Default.With(CsProjCoreToolchain.NetCoreApp22));
-#endif
 #if Core30
             Add(Job.Default.With(CsProjCoreToolchain.NetCoreApp30));
 #endif
@@ -41,17 +35,13 @@ namespace Benchmarks.CSharp
             // CoreRT（RyuJIT利用）
             // cf. https://benchmarkdotnet.org/articles/configs/toolchains.html
             // cf. https://github.com/dotnet/corert/blob/master/Documentation/how-to-build-and-run-ilcompiler-in-console-shell-prompt.md
-            Add(Job.Default
-                .With(CsProjCoreToolchain.NetCoreApp22)
-                .With(Runtime.CoreRT));
+            Add(Job.Default.With(CoreRtRuntime.CoreRt30));
 #endif
 #if CoreRtCpp
             // CoreRT（CPP Code Generator利用）
             Add(Job.Default
-                .With(CsProjCoreToolchain.NetCoreApp22)
-                .With(Runtime.CoreRT)
+                .With(CoreRtRuntime.CoreRt30)
                 .With(CoreRtToolchain.CreateBuilder()
-                    // ReSharper disable once StringLiteralTypo
                     .UseCoreRtLocal(@"\corert\bin\Windows_NT.x64.Release")
                     .UseCppCodeGenerator()
                     .ToToolchain()));
