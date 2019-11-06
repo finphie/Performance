@@ -71,17 +71,17 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             var resultSpan = MemoryMarshal.CreateSpan(ref MemoryMarshal.GetReference(result.AsSpan()), length);
             ref var sourceStart = ref Unsafe.As<byte, long>(ref SourceBytes[0]);
 
-            const int size = sizeof(long);
-            const string format = "x16";
+            const int Size = sizeof(long);
+            const string Format = "x16";
 
             BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 0))
-                .TryFormat(resultSpan, out _, format);
+                .TryFormat(resultSpan, out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 1))
-                .TryFormat(resultSpan.Slice(size * 2 * 1), out _, format);
+                .TryFormat(resultSpan.Slice(Size * 2 * 1), out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 2))
-                .TryFormat(resultSpan.Slice(size * 2 * 2), out _, format);
+                .TryFormat(resultSpan.Slice(Size * 2 * 2), out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 3))
-                .TryFormat(resultSpan.Slice(size * 2 * 3), out _, format);
+                .TryFormat(resultSpan.Slice(Size * 2 * 3), out _, Format);
 
             return result;
         }
@@ -94,8 +94,8 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             var resultSpan = MemoryMarshal.CreateSpan(ref MemoryMarshal.GetReference(result.AsSpan()), length);
             ref var sourceStart = ref SourceBytes[0];
 
-            const int size = sizeof(long);
-            const string format = "x16";
+            const int Size = sizeof(long);
+            const string Format = "x16";
 
             // ReSharper disable once CommentTypo
             // BinaryPrimitives.ReadInt64BigEndianやBitConverter.ToInt64、MemoryMarshal.Read内部では、
@@ -103,14 +103,14 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             // cf. https://github.com/dotnet/corefx/blob/b0f6ef48cca9ae70b0e8d81ffa640cbdd1b26f55/src/Common/src/CoreLib/System/Buffers/Binary/ReaderBigEndian.cs#L46
             // cf. https://github.com/dotnet/corefx/blob/v2.2.0/src/Common/src/CoreLib/System/BitConverter.cs#L293
             // cf. https://github.com/dotnet/corefx/blob/v2.2.0/src/Common/src/CoreLib/System/Runtime/InteropServices/MemoryMarshal.cs#L165
-            BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, size * 0)))
-                .TryFormat(resultSpan, out _, format);
-            BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, size * 1)))
-                .TryFormat(resultSpan.Slice(size * 2 * 1), out _, format);
-            BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, size * 2)))
-                .TryFormat(resultSpan.Slice(size * 2 * 2), out _, format);
-            BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, size * 3)))
-                .TryFormat(resultSpan.Slice(size * 2 * 3), out _, format);
+            BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 0)))
+                .TryFormat(resultSpan, out _, Format);
+            BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 1)))
+                .TryFormat(resultSpan.Slice(Size * 2 * 1), out _, Format);
+            BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 2)))
+                .TryFormat(resultSpan.Slice(Size * 2 * 2), out _, Format);
+            BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 3)))
+                .TryFormat(resultSpan.Slice(Size * 2 * 3), out _, Format);
 
             return result;
         }
@@ -122,21 +122,21 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             var result = new string(default, length);
             var resultSpan = MemoryMarshal.CreateSpan(ref MemoryMarshal.GetReference(result.AsSpan()), length);
 
-            using (var ms = new MemoryStream(SourceBytes))
-            using (var br = new BinaryReader(ms))
-            {
-                const int size = sizeof(long);
-                const string format = "x16";
+            using var ms = new MemoryStream(SourceBytes);
+            using var br = new BinaryReader(ms);
 
-                BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-                    .TryFormat(resultSpan, out _, format);
-                BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-                    .TryFormat(resultSpan.Slice(size * 2 * 1), out _, format);
-                BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-                    .TryFormat(resultSpan.Slice(size * 2 * 2), out _, format);
-                BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-                    .TryFormat(resultSpan.Slice(size * 2 * 3), out _, format);
-            }
+            const int Size = sizeof(long);
+            const string Format = "x16";
+
+            BinaryPrimitives.ReverseEndianness(br.ReadInt64())
+                .TryFormat(resultSpan, out _, Format);
+            BinaryPrimitives.ReverseEndianness(br.ReadInt64())
+                .TryFormat(resultSpan.Slice(Size * 2 * 1), out _, Format);
+            BinaryPrimitives.ReverseEndianness(br.ReadInt64())
+                .TryFormat(resultSpan.Slice(Size * 2 * 2), out _, Format);
+            BinaryPrimitives.ReverseEndianness(br.ReadInt64())
+                .TryFormat(resultSpan.Slice(Size * 2 * 3), out _, Format);
+
 
             return result;
         }
@@ -178,9 +178,9 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
         [Benchmark]
         public unsafe string LookupShiftUnsafe()
         {
-            const string table = "0123456789abcdef";
+            const string Table = "0123456789abcdef";
             var result = new string(default, SourceBytes.Length * 2);
-            fixed (char* resultPointer = result, tablePointer = table)
+            fixed (char* resultPointer = result, tablePointer = Table)
             {
                 var pointer = resultPointer;
                 foreach (var sourceByte in SourceBytes)

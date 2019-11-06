@@ -117,12 +117,10 @@ namespace Benchmarks.CSharp
         {
             var memory = SourceConstString.AsMemory();
             var result = 0;
-            using (var handle = memory.Pin())
-            {
-                var pointer = (char*)handle.Pointer;
-                for (var i = 0; i < Count; i++)
-                    result += pointer[Index1] + pointer[Index2];
-            }
+            using var handle = memory.Pin();
+            var pointer = (char*)handle.Pointer;
+            for (var i = 0; i < Count; i++)
+                result += pointer[Index1] + pointer[Index2];
 
             return result;
         }
@@ -132,12 +130,10 @@ namespace Benchmarks.CSharp
         {
             var memory = SourceStaticString.AsMemory();
             var result = 0;
-            using (var handle = memory.Pin())
-            {
-                var pointer = (char*)handle.Pointer;
-                for (var i = 0; i < Count; i++)
-                    result += pointer[Index1] + pointer[Index2];
-            }
+            using var handle = memory.Pin();
+            var pointer = (char*)handle.Pointer;
+            for (var i = 0; i < Count; i++)
+                result += pointer[Index1] + pointer[Index2];
 
             return result;
         }
@@ -146,14 +142,12 @@ namespace Benchmarks.CSharp
         public unsafe int MemoryPinCharArray()
         {
             var memory = SourceChars.AsMemory();
-            using (var handle = memory.Pin())
-            {
-                var pointer = (char*)handle.Pointer;
-                var result = 0;
-                for (var i = 0; i < Count; i++)
-                    result += pointer[Index1] + pointer[Index2];
-                return result;
-            }
+            using var handle = memory.Pin();
+            var pointer = (char*)handle.Pointer;
+            var result = 0;
+            for (var i = 0; i < Count; i++)
+                result += pointer[Index1] + pointer[Index2];
+            return result;
         }
 
         [Benchmark]

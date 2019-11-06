@@ -77,12 +77,11 @@ namespace Benchmarks.CSharp
         {
             var s = new string(default, 2);
             var memory = s.AsMemory();
-            using (var handle = memory.Pin())
-            {
-                var pointer = (char*)handle.Pointer;
-                pointer[0] = SourceChars[1];
-                pointer[1] = SourceChars[10];
-            }
+            using var handle = memory.Pin();
+
+            var pointer = (char*)handle.Pointer;
+            pointer[0] = SourceChars[1];
+            pointer[1] = SourceChars[10];
 
             return s;
         }

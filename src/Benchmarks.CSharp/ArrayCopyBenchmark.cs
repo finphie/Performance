@@ -140,18 +140,21 @@ namespace Benchmarks.CSharp
         {
             var length = _destination.Length;
             fixed (byte* source = &_source[0], destination = &_destination[0])
-            using (var streamSource = new UnmanagedMemoryStream(source, _source.Length))
-            using (var streamDestination =
-                new UnmanagedMemoryStream(destination, length, length, FileAccess.Write))
+            {
+                using var streamSource = new UnmanagedMemoryStream(source, _source.Length);
+                using var streamDestination = new UnmanagedMemoryStream(destination, length, length, FileAccess.Write);
                 streamSource.CopyTo(streamDestination);
+            }
         }
 
         [Benchmark]
         public unsafe void UnmanagedMemoryStreamRead()
         {
             fixed (byte* source = &_source[0])
-            using (var streamSource = new UnmanagedMemoryStream(source, _source.Length))
+            {
+                using var streamSource = new UnmanagedMemoryStream(source, _source.Length);
                 streamSource.Read(_destination);
+            }
         }
 
         [Benchmark]
@@ -159,9 +162,10 @@ namespace Benchmarks.CSharp
         {
             var length = _destination.Length;
             fixed (byte* destination = &_destination[0])
-            using (var streamDestination =
-                new UnmanagedMemoryStream(destination, length, length, FileAccess.Write))
+            {
+                using var streamDestination = new UnmanagedMemoryStream(destination, length, length, FileAccess.Write);
                 streamDestination.Write(_source);
+            }
         }
     }
 }
