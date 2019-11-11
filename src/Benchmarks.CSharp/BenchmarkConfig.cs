@@ -40,10 +40,10 @@ namespace Benchmarks.CSharp
 #if CoreRtCpp
             // CoreRT（CPP Code Generator利用）
             Add(Job.Default
-                .With(CoreRtRuntime.CoreRt30)
                 .With(CoreRtToolchain.CreateBuilder()
                     .UseCoreRtLocal(@"\corert\bin\Windows_NT.x64.Release")
                     .UseCppCodeGenerator()
+                    .TargetFrameworkMoniker("netcoreapp3.0")
                     .ToToolchain()));
 #endif
         }
