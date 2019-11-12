@@ -20,6 +20,11 @@ namespace Benchmarks.CSharp
 
         [Benchmark]
         [ArgumentsSource(nameof(Values))]
+        public bool IsNullOrEmpty(string value)
+          => value is null || value.Length == 0;
+
+        [Benchmark]
+        [ArgumentsSource(nameof(Values))]
         public bool IsNullOrEmpty1(string value)
             => value is null || (uint)value.Length <= 0U;
 
