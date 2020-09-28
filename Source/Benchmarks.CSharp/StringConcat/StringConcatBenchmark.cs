@@ -153,11 +153,11 @@ namespace Benchmarks.CSharp.StringConcat
 
             _source00.AsSpan().CopyTo(span);
             var pos = _source00.Length;
-            _source01.AsSpan().CopyTo(span.Slice(pos));
+            _source01.AsSpan().CopyTo(span[pos..]);
             pos += _source01.Length;
-            _source02.AsSpan().CopyTo(span.Slice(pos));
+            _source02.AsSpan().CopyTo(span[pos..]);
             pos += _source02.Length;
-            _source03.AsSpan().CopyTo(span.Slice(pos));
+            _source03.AsSpan().CopyTo(span[pos..]);
 
             return result;
         }
@@ -174,19 +174,19 @@ namespace Benchmarks.CSharp.StringConcat
 
             _source00.AsSpan().CopyTo(span);
             var pos = _source00.Length;
-            _source01.AsSpan().CopyTo(span.Slice(pos));
+            _source01.AsSpan().CopyTo(span[pos..]);
             pos += _source01.Length;
-            _source02.AsSpan().CopyTo(span.Slice(pos));
+            _source02.AsSpan().CopyTo(span[pos..]);
             pos += _source02.Length;
-            _source03.AsSpan().CopyTo(span.Slice(pos));
+            _source03.AsSpan().CopyTo(span[pos..]);
             pos += _source03.Length;
-            _source04.AsSpan().CopyTo(span.Slice(pos));
+            _source04.AsSpan().CopyTo(span[pos..]);
             pos += _source04.Length;
-            _source05.AsSpan().CopyTo(span.Slice(pos));
+            _source05.AsSpan().CopyTo(span[pos..]);
             pos += _source05.Length;
-            _source06.AsSpan().CopyTo(span.Slice(pos));
+            _source06.AsSpan().CopyTo(span[pos..]);
             pos += _source06.Length;
-            _source07.AsSpan().CopyTo(span.Slice(pos));
+            _source07.AsSpan().CopyTo(span[pos..]);
 
             return result;
         }
@@ -204,27 +204,27 @@ namespace Benchmarks.CSharp.StringConcat
 
             _source00.AsSpan().CopyTo(span);
             var pos = _source00.Length;
-            _source01.AsSpan().CopyTo(span.Slice(pos));
+            _source01.AsSpan().CopyTo(span[pos..]);
             pos += _source01.Length;
-            _source02.AsSpan().CopyTo(span.Slice(pos));
+            _source02.AsSpan().CopyTo(span[pos..]);
             pos += _source02.Length;
-            _source03.AsSpan().CopyTo(span.Slice(pos));
+            _source03.AsSpan().CopyTo(span[pos..]);
             pos += _source03.Length;
-            _source04.AsSpan().CopyTo(span.Slice(pos));
+            _source04.AsSpan().CopyTo(span[pos..]);
             pos += _source04.Length;
-            _source05.AsSpan().CopyTo(span.Slice(pos));
+            _source05.AsSpan().CopyTo(span[pos..]);
             pos += _source05.Length;
-            _source06.AsSpan().CopyTo(span.Slice(pos));
+            _source06.AsSpan().CopyTo(span[pos..]);
             pos += _source06.Length;
-            _source07.AsSpan().CopyTo(span.Slice(pos));
+            _source07.AsSpan().CopyTo(span[pos..]);
             pos += _source07.Length;
-            _source08.AsSpan().CopyTo(span.Slice(pos));
+            _source08.AsSpan().CopyTo(span[pos..]);
             pos += _source08.Length;
-            _source09.AsSpan().CopyTo(span.Slice(pos));
+            _source09.AsSpan().CopyTo(span[pos..]);
             pos += _source09.Length;
-            _source10.AsSpan().CopyTo(span.Slice(pos));
+            _source10.AsSpan().CopyTo(span[pos..]);
             pos += _source10.Length;
-            _source11.AsSpan().CopyTo(span.Slice(pos));
+            _source11.AsSpan().CopyTo(span[pos..]);
 
             return result;
         }

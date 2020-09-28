@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Unicode;
 using BenchmarkDotNet.Attributes;
@@ -27,16 +26,24 @@ namespace Benchmarks.CSharp
         public unsafe void UnsafeSpan()
         {
             fixed (char* chars = _data)
-            fixed (byte* bytes = _buffer.AsSpan())
-                Encoding.UTF8.GetBytes(chars, _data.Length, bytes, _buffer.Length);
+            {
+                fixed (byte* bytes = _buffer.AsSpan())
+                {
+                    Encoding.UTF8.GetBytes(chars, _data.Length, bytes, _buffer.Length);
+                }
+            }
         }
 
         [Benchmark]
         public unsafe void Unsafe()
         {
             fixed (char* chars = _data)
-            fixed (byte* bytes = _buffer)
-                Encoding.UTF8.GetBytes(chars, _data.Length, bytes, _buffer.Length);
+            {
+                fixed (byte* bytes = _buffer)
+                {
+                    Encoding.UTF8.GetBytes(chars, _data.Length, bytes, _buffer.Length);
+                }
+            }
         }
 
         [Benchmark]

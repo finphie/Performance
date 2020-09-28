@@ -25,9 +25,6 @@ namespace Benchmarks.CSharp
         byte[] _source1;
         byte[] _source2;
 
-        [Params(32, 64, 128)]
-        public int SourceLength { get; set; }
-
         public HmacHha256Benchmark()
         {
             var key = ByteArrayHelper.CreateUtf8Bytes(KeyLength);
@@ -41,19 +38,8 @@ namespace Benchmarks.CSharp
             Dispose(false);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _hmac?.Dispose();
-                    _incrementalHash?.Dispose();
-                }
-
-                _disposed = true;
-            }
-        }
+        [Params(32, 64, 128)]
+        public int SourceLength { get; set; }
 
         public void Dispose()
         {
@@ -110,6 +96,20 @@ namespace Benchmarks.CSharp
 
             _incrementalHash.AppendData(buffer);
             _incrementalHash.TryGetHashAndReset(_hash, out _);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _hmac?.Dispose();
+                    _incrementalHash?.Dispose();
+                }
+
+                _disposed = true;
+            }
         }
     }
 }

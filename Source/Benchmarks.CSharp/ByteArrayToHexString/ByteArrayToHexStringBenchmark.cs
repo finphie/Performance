@@ -56,7 +56,7 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             var i = 0;
             foreach (var sourceByte in SourceBytes)
             {
-                sourceByte.TryFormat(span.Slice(i), out _, "x2");
+                sourceByte.TryFormat(span[i..], out _, "x2");
                 i += 2;
             }
 
@@ -77,11 +77,11 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 0))
                 .TryFormat(resultSpan, out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 1))
-                .TryFormat(resultSpan.Slice(Size * 2 * 1), out _, Format);
+                .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 2))
-                .TryFormat(resultSpan.Slice(Size * 2 * 2), out _, Format);
+                .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 3))
-                .TryFormat(resultSpan.Slice(Size * 2 * 3), out _, Format);
+                .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format);
 
             return result;
         }
@@ -106,11 +106,11 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 0)))
                 .TryFormat(resultSpan, out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 1)))
-                .TryFormat(resultSpan.Slice(Size * 2 * 1), out _, Format);
+                .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 2)))
-                .TryFormat(resultSpan.Slice(Size * 2 * 2), out _, Format);
+                .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format);
             BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 3)))
-                .TryFormat(resultSpan.Slice(Size * 2 * 3), out _, Format);
+                .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format);
 
             return result;
         }
@@ -131,12 +131,11 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             BinaryPrimitives.ReverseEndianness(br.ReadInt64())
                 .TryFormat(resultSpan, out _, Format);
             BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-                .TryFormat(resultSpan.Slice(Size * 2 * 1), out _, Format);
+                .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format);
             BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-                .TryFormat(resultSpan.Slice(Size * 2 * 2), out _, Format);
+                .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format);
             BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-                .TryFormat(resultSpan.Slice(Size * 2 * 3), out _, Format);
-
+                .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format);
 
             return result;
         }
@@ -239,10 +238,10 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             {
                 var b = sourceByte >> 0b0100;
                 Unsafe.Add(ref resultStart, i++) =
-                    (char)('a' - 10 + b + (((b - 10) >> (sizeof(int) * 8 - 1)) & -('a' - 10 - '0')));
+                    (char)('a' - 10 + b + (((b - 10) >> ((sizeof(int) * 8) - 1)) & -('a' - 10 - '0')));
                 b = sourceByte & 0b1111;
                 Unsafe.Add(ref resultStart, i++) =
-                    (char)('a' - 10 + b + (((b - 10) >> (sizeof(int) * 8 - 1)) & -('a' - 10 - '0')));
+                    (char)('a' - 10 + b + (((b - 10) >> ((sizeof(int) * 8) - 1)) & -('a' - 10 - '0')));
             }
 
             return result;
@@ -258,9 +257,9 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
                 foreach (var sourceByte in SourceBytes)
                 {
                     var b = sourceByte >> 0b0100;
-                    *pointer++ = (char)('a' - 10 + b + (((b - 10) >> (sizeof(int) * 8 - 1)) & -('a' - 10 - '0')));
+                    *pointer++ = (char)('a' - 10 + b + (((b - 10) >> ((sizeof(int) * 8) - 1)) & -('a' - 10 - '0')));
                     b = sourceByte & 0b1111;
-                    *pointer++ = (char)('a' - 10 + b + (((b - 10) >> (sizeof(int) * 8 - 1)) & -('a' - 10 - '0')));
+                    *pointer++ = (char)('a' - 10 + b + (((b - 10) >> ((sizeof(int) * 8) - 1)) & -('a' - 10 - '0')));
                 }
             }
 

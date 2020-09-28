@@ -15,7 +15,10 @@ namespace Benchmarks.CSharp.EnumGetEnumMember
             where T : struct, Enum
         {
             if (Dic.ContainsKey(value))
+            {
                 return Dic[value] as string;
+            }
+
             var memberValue = typeof(T)
                 .GetField(value.ToString())
                 .GetCustomAttribute<EnumMemberAttribute>().Value;

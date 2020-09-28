@@ -24,7 +24,9 @@ namespace Benchmarks.CSharp.Helpers
 
             var count = length / sb.Length;
             for (var i = 0; i < count; i++)
+            {
                 sb.Append(CreateUtf16String());
+            }
 
             return sb.ToString().Substring(0, length);
         }

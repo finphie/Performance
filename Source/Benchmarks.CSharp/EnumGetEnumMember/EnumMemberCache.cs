@@ -18,7 +18,9 @@ namespace Benchmarks.CSharp.EnumGetEnumMember
             var values = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static);
             Table = new string[values.Length];
             for (var i = 0; i < values.Length; i++)
+            {
                 Table[i] = values[i].GetCustomAttribute<EnumMemberAttribute>().Value;
+            }
         }
 
         public static string Get(T value) => Table[Unsafe.As<T, int>(ref value)];

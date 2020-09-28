@@ -32,8 +32,12 @@ namespace Benchmarks.CSharp
 
             var byteBuffer = new byte[charLength];
             fixed (char* chars = charBuffer)
-            fixed (byte* bytes = byteBuffer)
-                Encoding.ASCII.GetBytes(chars, charLength, bytes, BufferLength);
+            {
+                fixed (byte* bytes = byteBuffer)
+                {
+                    Encoding.ASCII.GetBytes(chars, charLength, bytes, BufferLength);
+                }
+            }
 
             return byteBuffer;
         }
@@ -67,7 +71,7 @@ namespace Benchmarks.CSharp
             {
                 var temp = '0' + value;
                 value /= 10;
-                Unsafe.Add(ref byteBufferStart, i - 1) = (byte)(temp - value * 10);
+                Unsafe.Add(ref byteBufferStart, i - 1) = (byte)(temp - (value * 10));
             }
 
             return byteBuffer;

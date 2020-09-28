@@ -26,8 +26,12 @@ namespace Benchmarks.CSharp
         {
             var byteBuffer = new byte[value.Length];
             fixed (char* chars = value)
-            fixed (byte* bytes = byteBuffer)
-                Encoding.ASCII.GetBytes(chars, value.Length, bytes, byteBuffer.Length);
+            {
+                fixed (byte* bytes = byteBuffer)
+                {
+                    Encoding.ASCII.GetBytes(chars, value.Length, bytes, byteBuffer.Length);
+                }
+            }
 
             return byteBuffer;
         }
@@ -39,7 +43,9 @@ namespace Benchmarks.CSharp
             ref var valueStart = ref MemoryMarshal.GetReference(value.AsSpan());
             var byteBuffer = new byte[value.Length];
             for (var i = 0; i < byteBuffer.Length; i++)
+            {
                 byteBuffer[i] = (byte)Unsafe.Add(ref valueStart, i);
+            }
 
             return byteBuffer;
         }
@@ -51,7 +57,9 @@ namespace Benchmarks.CSharp
             ref var valueStart = ref MemoryMarshal.GetReference(value.AsSpan());
             var byteBuffer = new byte[value.Length];
             for (var i = 0; i < byteBuffer.Length; i++)
+            {
                 byteBuffer[i] = (byte)Unsafe.AddByteOffset(ref valueStart, (IntPtr)(i * sizeof(char)));
+            }
 
             return byteBuffer;
         }

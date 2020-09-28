@@ -117,14 +117,18 @@ namespace Benchmarks.CSharp
         public unsafe void BufferMemoryCopy()
         {
             fixed (void* source = &_source[0], destination = &_destination[0])
+            {
                 Buffer.MemoryCopy(source, destination, _destination.Length, _source.Length);
+            }
         }
 
         [Benchmark]
         public unsafe void MarshalCopy()
         {
             fixed (byte* source = &_source[0])
+            {
                 Marshal.Copy((IntPtr)source, _destination, 0, _destination.Length);
+            }
         }
 
         [Benchmark]

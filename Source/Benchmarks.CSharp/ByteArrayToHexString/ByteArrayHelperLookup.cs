@@ -43,7 +43,9 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             ref var resultStart = ref Unsafe.As<char, int>(ref MemoryMarshal.GetReference(result.AsSpan()));
             ref var tableStart = ref Table[0];
             for (var i = 0; i < source.Length; i++)
+            {
                 Unsafe.Add(ref resultStart, i) = Unsafe.Add(ref tableStart, source[i]);
+            }
 
             return result;
         }
@@ -53,11 +55,15 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
         {
             var result = new string(default, source.Length * 2);
             fixed (char* resultPointer = result)
-            fixed (int* tablePointer = &Table[0])
             {
-                var pointer = (int*)resultPointer;
-                for (var i = 0; i < source.Length; i++)
-                    pointer[i] = tablePointer[source[i]];
+                fixed (int* tablePointer = &Table[0])
+                {
+                    var pointer = (int*)resultPointer;
+                    for (var i = 0; i < source.Length; i++)
+                    {
+                        pointer[i] = tablePointer[source[i]];
+                    }
+                }
             }
 
             return result;

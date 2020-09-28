@@ -36,7 +36,10 @@ namespace Benchmarks.CSharp
         {
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += SourceConstString[Index1] + SourceConstString[Index2];
+            }
+
             return result;
         }
 
@@ -45,7 +48,10 @@ namespace Benchmarks.CSharp
         {
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += SourceStaticString[Index1] + SourceStaticString[Index2];
+            }
+
             return result;
         }
 
@@ -54,7 +60,10 @@ namespace Benchmarks.CSharp
         {
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += SourceChars[Index1] + SourceChars[Index2];
+            }
+
             return result;
         }
 
@@ -63,8 +72,13 @@ namespace Benchmarks.CSharp
         {
             var result = 0;
             fixed (char* pointer = SourceConstString)
+            {
                 for (var i = 0; i < Count; i++)
+                {
                     result += pointer[Index1] + pointer[Index2];
+                }
+            }
+
             return result;
         }
 
@@ -73,8 +87,13 @@ namespace Benchmarks.CSharp
         {
             var result = 0;
             fixed (char* pointer = SourceStaticString)
+            {
                 for (var i = 0; i < Count; i++)
+                {
                     result += pointer[Index1] + pointer[Index2];
+                }
+            }
+
             return result;
         }
 
@@ -83,8 +102,13 @@ namespace Benchmarks.CSharp
         {
             var result = 0;
             fixed (char* pointer = SourceChars)
+            {
                 for (var i = 0; i < Count; i++)
+                {
                     result += pointer[Index1] + pointer[Index2];
+                }
+            }
+
             return result;
         }
 
@@ -95,7 +119,10 @@ namespace Benchmarks.CSharp
             var pointer = (char*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(SourceStaticString.AsSpan()));
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += pointer[Index1] + pointer[Index2];
+            }
+
             handle.Free();
             return result;
         }
@@ -107,7 +134,10 @@ namespace Benchmarks.CSharp
             var pointer = (char*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(SourceChars.AsSpan()));
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += pointer[Index1] + pointer[Index2];
+            }
+
             handle.Free();
             return result;
         }
@@ -120,7 +150,9 @@ namespace Benchmarks.CSharp
             using var handle = memory.Pin();
             var pointer = (char*)handle.Pointer;
             for (var i = 0; i < Count; i++)
+            {
                 result += pointer[Index1] + pointer[Index2];
+            }
 
             return result;
         }
@@ -133,7 +165,9 @@ namespace Benchmarks.CSharp
             using var handle = memory.Pin();
             var pointer = (char*)handle.Pointer;
             for (var i = 0; i < Count; i++)
+            {
                 result += pointer[Index1] + pointer[Index2];
+            }
 
             return result;
         }
@@ -146,7 +180,10 @@ namespace Benchmarks.CSharp
             var pointer = (char*)handle.Pointer;
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += pointer[Index1] + pointer[Index2];
+            }
+
             return result;
         }
 
@@ -156,7 +193,10 @@ namespace Benchmarks.CSharp
             var span = SourceConstString.AsSpan();
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += span[Index1] + span[Index2];
+            }
+
             return result;
         }
 
@@ -166,7 +206,10 @@ namespace Benchmarks.CSharp
             var span = SourceStaticString.AsSpan();
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += span[Index1] + span[Index2];
+            }
+
             return result;
         }
 
@@ -176,7 +219,10 @@ namespace Benchmarks.CSharp
             var span = SourceChars.AsSpan();
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += span[Index1] + span[Index2];
+            }
+
             return result;
         }
 
@@ -186,7 +232,10 @@ namespace Benchmarks.CSharp
             ref var start = ref MemoryMarshal.GetReference(SourceConstString.AsSpan());
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += Unsafe.Add(ref start, Index1) + Unsafe.Add(ref start, Index2);
+            }
+
             return result;
         }
 
@@ -196,7 +245,10 @@ namespace Benchmarks.CSharp
             ref var start = ref MemoryMarshal.GetReference(SourceStaticString.AsSpan());
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += Unsafe.Add(ref start, Index1) + Unsafe.Add(ref start, Index2);
+            }
+
             return result;
         }
 
@@ -206,7 +258,10 @@ namespace Benchmarks.CSharp
             ref var start = ref SourceChars.AsSpan().GetPinnableReference();
             var result = 0;
             for (var i = 0; i < Count; i++)
+            {
                 result += Unsafe.Add(ref start, Index1) + Unsafe.Add(ref start, Index2);
+            }
+
             return result;
         }
     }

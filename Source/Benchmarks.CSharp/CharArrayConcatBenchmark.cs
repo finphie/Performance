@@ -36,7 +36,10 @@ namespace Benchmarks.CSharp
         {
             var sb = new StringBuilder(_source.Length);
             foreach (var c in _source)
+            {
                 sb.Append(c);
+            }
+
             return sb.ToString();
         }
     }

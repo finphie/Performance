@@ -39,10 +39,12 @@ namespace Benchmarks.CSharp
             var value = Value.ToString(CultureInfo.InvariantCulture);
             Span<byte> byteBuffer = stackalloc byte[BufferSize];
             fixed (char* chars = value)
-            fixed (byte* bytes = byteBuffer)
             {
-                var byteLength = Encoding.UTF8.GetBytes(chars, value.Length, bytes, BufferSize);
-                return byteBuffer.Slice(0, byteLength).ToArray();
+                fixed (byte* bytes = byteBuffer)
+                {
+                    var byteLength = Encoding.UTF8.GetBytes(chars, value.Length, bytes, BufferSize);
+                    return byteBuffer.Slice(0, byteLength).ToArray();
+                }
             }
         }
 
@@ -79,10 +81,12 @@ namespace Benchmarks.CSharp
             Value.TryFormat(charBuffer, out var charLength, null, CultureInfo.InvariantCulture);
             Span<byte> byteBuffer = stackalloc byte[charLength];
             fixed (char* chars = charBuffer)
-            fixed (byte* bytes = byteBuffer)
             {
-                var byteLength = Encoding.UTF8.GetBytes(chars, charLength, bytes, BufferSize);
-                return byteBuffer.Slice(0, byteLength).ToArray();
+                fixed (byte* bytes = byteBuffer)
+                {
+                    var byteLength = Encoding.UTF8.GetBytes(chars, charLength, bytes, BufferSize);
+                    return byteBuffer.Slice(0, byteLength).ToArray();
+                }
             }
         }
 

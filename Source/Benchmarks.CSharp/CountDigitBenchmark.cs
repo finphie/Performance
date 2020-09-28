@@ -12,7 +12,6 @@ namespace Benchmarks.CSharp
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "ベンチマーク")]
     public class CountDigitBenchmark
     {
-        [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField", Justification = "不要")]
         public static IEnumerable<ulong> Values => new[]
         {
             (ulong)DateTimeOffset.Parse("2018/01/01T00:00:00Z").ToUnixTimeMilliseconds(),
@@ -26,7 +25,10 @@ namespace Benchmarks.CSharp
         {
             var digits = 1;
             while ((value /= 10) != 0)
+            {
                 digits++;
+            }
+
             return digits;
         }
 
@@ -67,24 +69,38 @@ namespace Benchmarks.CSharp
                 }
             }
             else
+            {
                 part = (uint)value;
+            }
 
             if (part < 10)
             {
                 // no-op
             }
             else if (part < 100)
+            {
                 digits += 1;
+            }
             else if (part < 1000)
+            {
                 digits += 2;
+            }
             else if (part < 10000)
+            {
                 digits += 3;
+            }
             else if (part < 100000)
+            {
                 digits += 4;
+            }
             else if (part < 1000000)
+            {
                 digits += 5;
+            }
             else
+            {
                 digits += 6;
+            }
 
             return digits;
         }
