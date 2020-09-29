@@ -56,4 +56,6 @@ jobs:
         run: sudo npm install -g markdownlint-cli
 
       - name: Lint markdown
-        run: markdownlint ${GITHUB_WORKSPACE}
+        run: |
+          echo $GITHUB_WORKSPACE
+          markdownlint $GITHUB_WORKSPACE
