@@ -57,5 +57,7 @@ jobs:
 
       - name: Lint markdown
         run: |
+          ls
           echo $GITHUB_WORKSPACE
           markdownlint $GITHUB_WORKSPACE
+
