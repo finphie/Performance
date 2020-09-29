@@ -52,12 +52,11 @@ jobs:
     if: needs.main.outputs.markdown == 'True'
 
     steps:
+      - name: Checkout ${{ github.event.repository.name }} repository
+        uses: actions/checkout@v2
+
       - name: Install markdownlint-cli
         run: sudo npm install -g markdownlint-cli
 
       - name: Lint markdown
-        run: |
-          ls
-          echo $GITHUB_WORKSPACE
-          markdownlint $GITHUB_WORKSPACE
-
+        run: markdownlint $GITHUB_WORKSPACE
