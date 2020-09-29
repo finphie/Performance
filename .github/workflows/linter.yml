@@ -53,7 +53,7 @@ jobs:
 
     steps:
       - name: Install markdownlint-cli
-        run: npm install -g markdownlint-cli
+        run: npm install markdownlint-cli
 
       - name: Lint markdown
         run: markdownlint '**/*.md'
