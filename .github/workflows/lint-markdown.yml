@@ -1,4 +1,4 @@
-name: 'Lint: Markdown'
+name: Lint
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
     paths:
       - '**/*.md'
       - .markdownlint.yml
-      - .github/workflows/markdown.yml
+      - .github/workflows/linter-markdown.yml
 
 jobs:
   main:

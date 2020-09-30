@@ -1,4 +1,4 @@
-name: 'Lint: .NET'
+name: Lint
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
       - '**/*.sln'
       - '**/Directory.Build.props'
       - '**/.editorconfig'
-      - .github/workflows/dotnet.yml
+      - .github/workflows/linter-dotnet.yml
 
 jobs:
   main:
