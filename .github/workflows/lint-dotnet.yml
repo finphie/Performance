@@ -1,4 +1,4 @@
-name: Lint
+name: 'Lint: .NET'
 
 on:
   pull_request:
