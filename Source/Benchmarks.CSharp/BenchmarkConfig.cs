@@ -22,25 +22,25 @@ namespace Benchmarks.CSharp
     {
         public BenchmarkConfig()
         {
-            Add(MarkdownExporter.GitHub);
-            Add(MemoryDiagnoser.Default);
-            Add(BenchmarkLogicalGroupRule.ByCategory);
-            Add(CategoriesColumn.Default);
-            Add(DisassemblyDiagnoser.Create(new DisassemblyDiagnoserConfig(printSource: true)));
+            AddExporter(MarkdownExporter.GitHub);
+            AddLogicalGroupRules(BenchmarkLogicalGroupRule.ByCategory);
+            AddColumn(CategoriesColumn.Default);
+            AddDiagnoser(MemoryDiagnoser.Default);
+            AddDiagnoser(new DisassemblyDiagnoser(new DisassemblyDiagnoserConfig(printSource: true)));
 
 #if Core30
-            Add(Job.Default.With(CsProjCoreToolchain.NetCoreApp30));
+            AddJob(Job.Default.WithToolchain(CsProjCoreToolchain.NetCoreApp30));
 #endif
 #if CoreRt
             // CoreRT（RyuJIT利用）
             // cf. https://benchmarkdotnet.org/articles/configs/toolchains.html
             // cf. https://github.com/dotnet/corert/blob/master/Documentation/how-to-build-and-run-ilcompiler-in-console-shell-prompt.md
-            Add(Job.Default.With(CoreRtRuntime.CoreRt30));
+            AddJob(Job.Default.WithRuntime(CoreRtRuntime.CoreRt30));
 #endif
 #if CoreRtCpp
             // CoreRT（CPP Code Generator利用）
-            Add(Job.Default
-                .With(CoreRtToolchain.CreateBuilder()
+            AddJob(Job.Default
+                .WithToolchain(CoreRtToolchain.CreateBuilder()
                     .UseCoreRtLocal(@"\corert\bin\Windows_NT.x64.Release")
                     .UseCppCodeGenerator()
                     .TargetFrameworkMoniker("netcoreapp3.0")
