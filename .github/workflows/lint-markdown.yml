@@ -9,8 +9,9 @@ on:
       - .github/workflows/markdown.yml
 
 jobs:
-  markdown:
+  main:
     runs-on: ubuntu-latest
+    name: 'Lint: Markdown'
 
     steps:
       - name: Checkout ${{ github.event.repository.name }} repository
