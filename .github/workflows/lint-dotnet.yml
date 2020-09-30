@@ -12,8 +12,9 @@ on:
       - .github/workflows/dotnet.yml
 
 jobs:
-  dotnet:
+  main:
     runs-on: ubuntu-latest
+    name: 'Lint: .NET'
 
     steps:
       - name: Checkout ${{ github.repository.name }} repository
