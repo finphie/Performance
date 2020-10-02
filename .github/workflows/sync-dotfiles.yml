@@ -40,7 +40,7 @@ jobs:
           BODY: ''
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd ${{ matrix.repository }}
+          cd __main__
           time=$(date +%s)
           branch_name=$BRANCH$time
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
