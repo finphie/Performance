@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      nuget: ${{ steps.x.outputs.nuget }}
+      nuget: ${{ steps.check.outputs.nuget }}
 
     steps:
       - name: Checkout ${{ github.event.repository.name }} repository
         uses: actions/checkout@v2
 
       - name: Check file type
-        id: x
+        id: check
         shell: pwsh
         run: |
           Write-Output "::set-output name=nuget::$(Test-Path *.sln)"
@@ -37,6 +37,11 @@ jobs:
     steps:
       - name: Checkout ${{ github.event.repository.name }} repository
         uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.100-rtm.20515.8
 
       - name: Cache nuget packages
         uses: actions/cache@v2
