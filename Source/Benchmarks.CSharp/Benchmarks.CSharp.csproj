@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
     <PackageReference Include="Enums.NET" Version="3.0.3" />
-    <PackageReference Include="FastEnum" Version="1.5.3" />
+    <PackageReference Include="FastEnum" Version="1.5.4" />
   </ItemGroup>
 
   <ItemGroup>
