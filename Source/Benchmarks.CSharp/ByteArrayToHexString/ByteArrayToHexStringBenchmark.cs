@@ -69,7 +69,7 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             var length = SourceBytes.Length * 2;
             var result = new string(default, length);
             var resultSpan = MemoryMarshal.CreateSpan(ref MemoryMarshal.GetReference(result.AsSpan()), length);
-            ref var sourceStart = ref Unsafe.As<byte, long>(ref SourceBytes[0]);
+            ref var sourceStart = ref Unsafe.As<byte, long>(ref MemoryMarshal.GetArrayDataReference(SourceBytes));
 
             const int Size = sizeof(long);
             const string Format = "x16";
@@ -92,7 +92,7 @@ namespace Benchmarks.CSharp.ByteArrayToHexString
             var length = SourceBytes.Length * 2;
             var result = new string(default, length);
             var resultSpan = MemoryMarshal.CreateSpan(ref MemoryMarshal.GetReference(result.AsSpan()), length);
-            ref var sourceStart = ref SourceBytes[0];
+            ref var sourceStart = ref MemoryMarshal.GetArrayDataReference(SourceBytes);
 
             const int Size = sizeof(long);
             const string Format = "x16";

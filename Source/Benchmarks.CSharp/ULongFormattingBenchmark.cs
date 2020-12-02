@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
@@ -65,7 +66,7 @@ namespace Benchmarks.CSharp
                 : 20;
 
             var byteBuffer = new byte[digits];
-            ref var byteBufferStart = ref byteBuffer[0];
+            ref var byteBufferStart = ref MemoryMarshal.GetArrayDataReference(byteBuffer);
 
             for (var i = digits; i > 0; i--)
             {
