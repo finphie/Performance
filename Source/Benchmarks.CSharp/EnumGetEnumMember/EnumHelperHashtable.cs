@@ -8,7 +8,7 @@ namespace Benchmarks.CSharp.EnumGetEnumMember
 {
     static class EnumHelperHashtable
     {
-        static readonly Hashtable Dic = new Hashtable();
+        static readonly Hashtable Dic = new();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetEnumMemberValue<T>(T value)

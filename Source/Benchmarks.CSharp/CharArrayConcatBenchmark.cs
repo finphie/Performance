@@ -20,7 +20,7 @@ namespace Benchmarks.CSharp
         public void Setup() => _source = Enumerable.Repeat('a', ArraySize).ToArray();
 
         [Benchmark]
-        public string NewString() => new string(_source);
+        public string NewString() => new(_source);
 
         [Benchmark]
         public string StringConcat() => string.Concat(_source);

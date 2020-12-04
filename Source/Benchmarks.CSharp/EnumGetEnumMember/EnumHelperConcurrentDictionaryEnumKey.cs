@@ -19,7 +19,7 @@ namespace Benchmarks.CSharp.EnumGetEnumMember
         static class Cache<T>
             where T : struct, Enum
         {
-            public static readonly ConcurrentDictionary<T, string> Dic = new ConcurrentDictionary<T, string>();
+            public static readonly ConcurrentDictionary<T, string> Dic = new();
         }
     }
 }

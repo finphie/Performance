@@ -13,8 +13,8 @@ namespace Benchmarks.CSharp
     [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "ベンチマーク")]
     public class HttpClientGetByteArrayBenchmark
     {
-        static readonly Uri Url = new Uri("http://localhost:3000/depth");
-        static readonly HttpClient Client = new HttpClient();
+        static readonly Uri Url = new("http://localhost:3000/depth");
+        static readonly HttpClient Client = new();
 
         [Benchmark]
         public async Task<byte[]> GetByteArrayAsync()

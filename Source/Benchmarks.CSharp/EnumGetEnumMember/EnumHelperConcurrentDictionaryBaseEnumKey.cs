@@ -8,7 +8,7 @@ namespace Benchmarks.CSharp.EnumGetEnumMember
 {
     static class EnumHelperConcurrentDictionaryBaseEnumKey
     {
-        static readonly ConcurrentDictionary<Enum, string> Dic = new ConcurrentDictionary<Enum, string>();
+        static readonly ConcurrentDictionary<Enum, string> Dic = new();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetEnumMemberValue<T>(T value)

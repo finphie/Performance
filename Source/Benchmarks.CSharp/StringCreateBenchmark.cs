@@ -25,7 +25,7 @@ namespace Benchmarks.CSharp
             });
 
         [Benchmark]
-        public string New() => new string(new[] { SourceChars[1], SourceChars[10] });
+        public string New() => new(new[] { SourceChars[1], SourceChars[10] });
 
         [Benchmark]
         public unsafe string Stackalloc()
@@ -34,7 +34,7 @@ namespace Benchmarks.CSharp
             {
                 SourceChars[1], SourceChars[10]
             };
-            return new string(array, 0, 2);
+            return new(array, 0, 2);
         }
 
         [Benchmark]
@@ -44,7 +44,7 @@ namespace Benchmarks.CSharp
             {
                 SourceChars[1], SourceChars[10]
             };
-            return new string(span);
+            return new(span);
         }
 
         [Benchmark]
@@ -94,7 +94,7 @@ namespace Benchmarks.CSharp
             var array = (char*)&temp;
             array[0] = SourceChars[1];
             array[1] = SourceChars[10];
-            return new string(array, 0, 2);
+            return new(array, 0, 2);
         }
 
         [Benchmark]
