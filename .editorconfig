@@ -29,6 +29,10 @@ indent_size = 2
 [*.yml]
 indent_size = 2
 
+# HTML, CSS, SCSSファイル
+[*.{html,css,scss}]
+indent_size = 2
+
 # Markdownファイル
 [*.md]
 trim_trailing_whitespace = false
