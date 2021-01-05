@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using BenchmarkDotNet.Attributes;
 
 namespace Benchmarks.CSharp
@@ -9,12 +9,11 @@ namespace Benchmarks.CSharp
     /// 桁数を取得する
     /// </summary>
     [Config(typeof(BenchmarkConfig))]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "ベンチマーク")]
     public class CountDigitBenchmark
     {
         public static IEnumerable<ulong> Values => new[]
         {
-            (ulong)DateTimeOffset.Parse("2018/01/01T00:00:00Z").ToUnixTimeMilliseconds(),
+            (ulong)DateTimeOffset.Parse("2018/01/01T00:00:00Z", CultureInfo.InvariantCulture).ToUnixTimeMilliseconds(),
             (ulong)DateTimeOffset.MaxValue.ToUnixTimeMilliseconds(),
             ulong.MaxValue
         };

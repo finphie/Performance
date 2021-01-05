@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
@@ -14,10 +13,6 @@ namespace Benchmarks.CSharp
     {
         const int Count = 32;
         const string SourceConstString = "0123456789abcdef";
-
-        // ReSharper disable once ConvertToConstant.Local
-        [SuppressMessage("Performance", "CA1802:Use literals where appropriate", Justification = "ベンチマーク")]
-        static readonly string SourceStaticString = SourceConstString;
 
         static readonly char[] SourceChars =
         {
@@ -38,18 +33,6 @@ namespace Benchmarks.CSharp
             for (var i = 0; i < Count; i++)
             {
                 result += SourceConstString[Index1] + SourceConstString[Index2];
-            }
-
-            return result;
-        }
-
-        [Benchmark]
-        public int StaticString()
-        {
-            var result = 0;
-            for (var i = 0; i < Count; i++)
-            {
-                result += SourceStaticString[Index1] + SourceStaticString[Index2];
             }
 
             return result;
@@ -83,21 +66,6 @@ namespace Benchmarks.CSharp
         }
 
         [Benchmark]
-        public unsafe int PointerStaticString()
-        {
-            var result = 0;
-            fixed (char* pointer = SourceStaticString)
-            {
-                for (var i = 0; i < Count; i++)
-                {
-                    result += pointer[Index1] + pointer[Index2];
-                }
-            }
-
-            return result;
-        }
-
-        [Benchmark]
         public unsafe int PointerCharArray()
         {
             var result = 0;
@@ -109,21 +77,6 @@ namespace Benchmarks.CSharp
                 }
             }
 
-            return result;
-        }
-
-        [Benchmark]
-        public unsafe int UnsafeAsPointerStaticString()
-        {
-            var handle = GCHandle.Alloc(SourceStaticString, GCHandleType.Pinned);
-            var pointer = (char*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(SourceStaticString.AsSpan()));
-            var result = 0;
-            for (var i = 0; i < Count; i++)
-            {
-                result += pointer[Index1] + pointer[Index2];
-            }
-
-            handle.Free();
             return result;
         }
 
@@ -146,21 +99,6 @@ namespace Benchmarks.CSharp
         public unsafe int MemoryPinConstString()
         {
             var memory = SourceConstString.AsMemory();
-            var result = 0;
-            using var handle = memory.Pin();
-            var pointer = (char*)handle.Pointer;
-            for (var i = 0; i < Count; i++)
-            {
-                result += pointer[Index1] + pointer[Index2];
-            }
-
-            return result;
-        }
-
-        [Benchmark]
-        public unsafe int MemoryPinStaticString()
-        {
-            var memory = SourceStaticString.AsMemory();
             var result = 0;
             using var handle = memory.Pin();
             var pointer = (char*)handle.Pointer;
@@ -201,19 +139,6 @@ namespace Benchmarks.CSharp
         }
 
         [Benchmark]
-        public int SpanStaticString()
-        {
-            var span = SourceStaticString.AsSpan();
-            var result = 0;
-            for (var i = 0; i < Count; i++)
-            {
-                result += span[Index1] + span[Index2];
-            }
-
-            return result;
-        }
-
-        [Benchmark]
         public int SpanCharArray()
         {
             var span = SourceChars.AsSpan();
@@ -230,19 +155,6 @@ namespace Benchmarks.CSharp
         public int UnsafeAddConstString()
         {
             ref var start = ref MemoryMarshal.GetReference(SourceConstString.AsSpan());
-            var result = 0;
-            for (var i = 0; i < Count; i++)
-            {
-                result += Unsafe.Add(ref start, Index1) + Unsafe.Add(ref start, Index2);
-            }
-
-            return result;
-        }
-
-        [Benchmark]
-        public int UnsafeAddStaticString()
-        {
-            ref var start = ref MemoryMarshal.GetReference(SourceStaticString.AsSpan());
             var result = 0;
             for (var i = 0; i < Count; i++)
             {

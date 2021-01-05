@@ -9,12 +9,6 @@ namespace Benchmarks.CSharp
     /// <summary>
     /// URI文字列連結処理のベンチマーク
     /// </summary>
-    /// <remarks>
-    ///                      Method |        Mean |     Error |    StdDev | Gen 0/1k Op | Allocated Memory/Op |
-    /// --------------------------- |-------------|-----------|-----------|-------------|---------------------|
-    /// HttpUtilityParseQueryString | 1,344.51 ns | 5.8619 ns | 5.4833 ns |      0.7057 |              1112 B |
-    ///    UnsafeCopyBlockUnaligned |    21.48 ns | 0.0829 ns | 0.0776 ns |      0.0508 |                80 B |
-    /// </remarks>
     [Config(typeof(BenchmarkConfig))]
     public class ConcatUriStringBenchmark
     {
