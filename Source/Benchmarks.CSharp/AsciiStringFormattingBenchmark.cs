@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -12,12 +12,11 @@ namespace Benchmarks.CSharp
     /// ASCII文字列をUTF-8のbyte配列に変換する処理のベンチマーク
     /// </summary>
     [Config(typeof(BenchmarkConfig))]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "ベンチマーク")]
     public class AsciiStringFormattingBenchmark
     {
         public static IEnumerable<string> Values => new[]
         {
-            DateTimeOffset.Parse("2018/01/01T00:00:00Z").ToUnixTimeMilliseconds().ToString()
+            DateTimeOffset.Parse("2018/01/01T00:00:00Z", CultureInfo.InvariantCulture).ToUnixTimeMilliseconds().ToString(CultureInfo.InvariantCulture)
         };
 
         [Benchmark]

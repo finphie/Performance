@@ -1,14 +1,10 @@
-﻿// ReSharper disable RedundantAssignment
-
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace Benchmarks.CSharp.StringConcat
 {
     partial class BinaryHelper
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [SuppressMessage("Maintainability", "CA1502:Avoid excessive complexity", Justification = "自動生成コード")]
         public static void CopyChar(ref char source, ref char destination, int charCount)
         {
             switch (charCount)

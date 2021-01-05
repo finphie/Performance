@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using BenchmarkDotNet.Columns;
+﻿using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Environments;
@@ -8,8 +7,7 @@ using BenchmarkDotNet.Jobs;
 
 namespace Benchmarks.CSharp
 {
-    [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "BenchmarkDotNetで使用")]
-    class BenchmarkConfig : ManualConfig
+    public class BenchmarkConfig : ManualConfig
     {
         public BenchmarkConfig()
         {

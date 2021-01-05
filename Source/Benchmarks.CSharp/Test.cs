@@ -2,12 +2,12 @@
 
 namespace Benchmarks.CSharp
 {
-    enum TestEnum
+    enum Test
     {
         [EnumMember(Value = "a")]
         A,
 
-        [EnumMember(Value = "a")]
+        [EnumMember(Value = "b")]
         B
     }
 }

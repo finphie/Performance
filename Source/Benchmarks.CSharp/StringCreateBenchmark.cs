@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -11,28 +10,31 @@ namespace Benchmarks.CSharp
     /// char配列から2文字を抽出してstringに変換
     /// </summary>
     [Config(typeof(BenchmarkConfig))]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "ベンチマーク")]
     public class StringCreateBenchmark
     {
-        static readonly char[] SourceChars = "0123456789abcdef".ToCharArray();
+        char[] _source;
+
+        [GlobalSetup]
+        public void Setup() => _source = "0123456789abcdef".ToCharArray();
 
         [Benchmark]
         public string StringCreate()
-            => string.Create(2, SourceChars, (span, c) =>
+            => string.Create(2, _source, (span, c) =>
             {
                 span[0] = c[1];
                 span[1] = c[10];
             });
 
         [Benchmark]
-        public string New() => new(new[] { SourceChars[1], SourceChars[10] });
+        public string New() => new(new[] { _source[1], _source[10] });
 
         [Benchmark]
         public unsafe string Stackalloc()
         {
             var array = stackalloc char[]
             {
-                SourceChars[1], SourceChars[10]
+                _source[1],
+                _source[10]
             };
             return new(array, 0, 2);
         }
@@ -42,7 +44,8 @@ namespace Benchmarks.CSharp
         {
             Span<char> span = stackalloc char[]
             {
-                SourceChars[1], SourceChars[10]
+                _source[1],
+                _source[10]
             };
             return new(span);
         }
@@ -53,8 +56,8 @@ namespace Benchmarks.CSharp
             var s = new string(default, 2);
             fixed (char* pointer = s)
             {
-                pointer[0] = SourceChars[1];
-                pointer[1] = SourceChars[10];
+                pointer[0] = _source[1];
+                pointer[1] = _source[10];
             }
 
             return s;
@@ -66,8 +69,8 @@ namespace Benchmarks.CSharp
             var s = new string(default, 2);
             var handle = GCHandle.Alloc(s, GCHandleType.Pinned);
             var pointer = (char*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(s.AsSpan()));
-            pointer[0] = SourceChars[1];
-            pointer[1] = SourceChars[10];
+            pointer[0] = _source[1];
+            pointer[1] = _source[10];
             handle.Free();
             return s;
         }
@@ -80,8 +83,8 @@ namespace Benchmarks.CSharp
             using var handle = memory.Pin();
 
             var pointer = (char*)handle.Pointer;
-            pointer[0] = SourceChars[1];
-            pointer[1] = SourceChars[10];
+            pointer[0] = _source[1];
+            pointer[1] = _source[10];
 
             return s;
         }
@@ -92,8 +95,8 @@ namespace Benchmarks.CSharp
         {
             var temp = 0U;
             var array = (char*)&temp;
-            array[0] = SourceChars[1];
-            array[1] = SourceChars[10];
+            array[0] = _source[1];
+            array[1] = _source[10];
             return new(array, 0, 2);
         }
 
@@ -102,8 +105,8 @@ namespace Benchmarks.CSharp
         {
             var s = new string(default, 2);
             var span = MemoryMarshal.CreateSpan(ref MemoryMarshal.GetReference(s.AsSpan()), 2);
-            span[0] = SourceChars[1];
-            span[1] = SourceChars[10];
+            span[0] = _source[1];
+            span[1] = _source[10];
             return s;
         }
 
@@ -112,13 +115,13 @@ namespace Benchmarks.CSharp
         {
             var s = new string(default, 2);
             ref var start = ref MemoryMarshal.GetReference(s.AsSpan());
-            Unsafe.Add(ref start, 0) = SourceChars[1];
-            Unsafe.Add(ref start, 1) = SourceChars[10];
+            Unsafe.Add(ref start, 0) = _source[1];
+            Unsafe.Add(ref start, 1) = _source[10];
             return s;
         }
 
         [Benchmark]
         public string StringBuilder()
-            => new StringBuilder(2).Append(SourceChars[1]).Append(SourceChars[10]).ToString();
+            => new StringBuilder(2).Append(_source[1]).Append(_source[10]).ToString();
     }
 }

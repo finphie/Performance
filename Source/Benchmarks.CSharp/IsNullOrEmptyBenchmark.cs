@@ -9,7 +9,6 @@ namespace Benchmarks.CSharp
     /// IsNullOrEmptyのベンチマーク
     /// </summary>
     [Config(typeof(BenchmarkConfig))]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "ベンチマーク")]
     public class IsNullOrEmptyBenchmark
     {
         public static IEnumerable<string> Values => new[]
