@@ -1,8 +1,10 @@
 <Project>
 
   <PropertyGroup>
+    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AnalysisLevel>preview</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <Authors>finphie</Authors>
     <Copyright>© 2021 finphie</Copyright>
