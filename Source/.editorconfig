@@ -1,5 +1,5 @@
-# C#ファイル
-[*.cs]
+# C# ベンチマークファイル
+[{*Benchmark*/**,*Benchmark*}.cs]
 
 ## Microsoft.CodeAnalysis.NetAnalyzers ##
 
