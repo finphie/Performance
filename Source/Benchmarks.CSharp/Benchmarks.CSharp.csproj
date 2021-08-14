@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>disable</Nullable>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
@@ -12,34 +12,6 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
     <PackageReference Include="Enums.NET" Version="4.0.0" />
     <PackageReference Include="FastEnum" Version="1.6.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="StringConcat\BinaryHelper.Fast.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BinaryHelper.Fast.cs</LastGenOutput>
-    </None>
-    <None Update="StringConcat\StringConcat2Benchmark.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StringConcat2Benchmark.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="StringConcat\BinaryHelper.Fast.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>BinaryHelper.Fast.tt</DependentUpon>
-    </Compile>
-    <Compile Update="StringConcat\StringConcat2Benchmark.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>StringConcat2Benchmark.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>
