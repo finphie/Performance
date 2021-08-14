@@ -1,18 +1,17 @@
 ﻿using System.Text;
 
-namespace Benchmarks.CSharp.Helpers
+namespace Benchmarks.CSharp.Helpers;
+
+/// <summary>
+/// <see cref="byte"/>配列のヘルパークラス
+/// </summary>
+public static class ByteArrayHelper
 {
     /// <summary>
-    /// <see cref="byte"/>配列のヘルパークラス
+    /// UTF-8のbyte配列を作成します。
     /// </summary>
-    public static class ByteArrayHelper
-    {
-        /// <summary>
-        /// UTF-8のbyte配列を作成します。
-        /// </summary>
-        /// <param name="length">文字列の長さ</param>
-        /// <returns>UTF-8のbyte配列を返します。</returns>
-        public static byte[] CreateUtf8Bytes(int length)
-            => Encoding.UTF8.GetBytes(StringHelper.CreateUtf16String(length));
-    }
+    /// <param name="length">文字列の長さ</param>
+    /// <returns>UTF-8のbyte配列を返します。</returns>
+    public static byte[] CreateUtf8Bytes(int length)
+        => Encoding.UTF8.GetBytes(StringHelper.CreateUtf16String(length));
 }

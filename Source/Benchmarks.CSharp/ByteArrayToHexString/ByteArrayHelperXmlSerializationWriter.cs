@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
-namespace Benchmarks.CSharp.ByteArrayToHexString
+namespace Benchmarks.CSharp.ByteArrayToHexString;
+
+public sealed class ByteArrayHelperXmlSerializationWriter : XmlSerializationWriter
 {
-    public sealed class ByteArrayHelperXmlSerializationWriter : XmlSerializationWriter
-    {
-        public static string ToHexString(byte[] value) => FromByteArrayHex(value);
+    public static string ToHexString(byte[] value) => FromByteArrayHex(value);
 
-        protected override void InitCallbacks() => throw new NotSupportedException();
-    }
+    protected override void InitCallbacks() => throw new NotSupportedException();
 }

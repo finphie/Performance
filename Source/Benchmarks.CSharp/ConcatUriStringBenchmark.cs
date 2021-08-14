@@ -1,95 +1,93 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Web;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp
+namespace Benchmarks.CSharp;
+
+/// <summary>
+/// URI文字列連結処理のベンチマーク
+/// </summary>
+[Config(typeof(BenchmarkConfig))]
+public class ConcatUriStringBenchmark
 {
-    /// <summary>
-    /// URI文字列連結処理のベンチマーク
-    /// </summary>
-    [Config(typeof(BenchmarkConfig))]
-    public class ConcatUriStringBenchmark
+    const char CharAndSign = '&';
+    const char CharEqualsSign = '=';
+
+    string _uri;
+
+    string _key1;
+    string _key2;
+
+    string _value1;
+    string _value2;
+
+    [GlobalSetup]
+    public void Setup()
     {
-        const char CharAndSign = '&';
-        const char CharEqualsSign = '=';
+        _uri = "uri?";
 
-        string _uri;
+        _key1 = "key1";
+        _key2 = "key2";
 
-        string _key1;
-        string _key2;
+        _value1 = "value1";
+        _value2 = "value2";
+    }
 
-        string _value1;
-        string _value2;
+    [Benchmark]
+    public string HttpUtilityParseQueryString()
+    {
+        var query = HttpUtility.ParseQueryString(string.Empty);
+        query[_key1] = _value1;
+        query[_key2] = _value2;
 
-        [GlobalSetup]
-        public void Setup()
-        {
-            _uri = "uri?";
+        return _uri + query;
+    }
 
-            _key1 = "key1";
-            _key2 = "key2";
+    [Benchmark]
+    public string UnsafeCopyBlockUnaligned()
+    {
+        var length = _uri.Length +
+                     _key1.Length + _value1.Length +
+                     _key2.Length + _value2.Length +
+                     3;
 
-            _value1 = "value1";
-            _value2 = "value2";
-        }
+        var result = new string(default, length);
+        ref var resultStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(result.AsSpan()));
 
-        [Benchmark]
-        public string HttpUtilityParseQueryString()
-        {
-            var query = HttpUtility.ParseQueryString(string.Empty);
-            query[_key1] = _value1;
-            query[_key2] = _value2;
+        var pos = _uri.Length * sizeof(char);
 
-            return _uri + query;
-        }
+        ref var sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_uri.AsSpan()));
+        Unsafe.CopyBlockUnaligned(ref resultStart, ref sourceStart, (uint)pos);
 
-        [Benchmark]
-        public string UnsafeCopyBlockUnaligned()
-        {
-            var length = _uri.Length +
-                         _key1.Length + _value1.Length +
-                         _key2.Length + _value2.Length +
-                         3;
+        var size = _key1.Length * sizeof(char);
+        sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_key1.AsSpan()));
+        Unsafe.CopyBlockUnaligned(ref Unsafe.Add(ref resultStart, pos), ref sourceStart, (uint)size);
+        pos += size;
 
-            var result = new string(default, length);
-            ref var resultStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(result.AsSpan()));
+        Unsafe.Add(ref resultStart, pos) = (byte)CharEqualsSign;
+        pos += sizeof(char);
 
-            var pos = _uri.Length * sizeof(char);
+        size = _value1.Length * sizeof(char);
+        sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_value1.AsSpan()));
+        Unsafe.CopyBlockUnaligned(ref Unsafe.Add(ref resultStart, pos), ref sourceStart, (uint)size);
+        pos += size;
 
-            ref var sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_uri.AsSpan()));
-            Unsafe.CopyBlockUnaligned(ref resultStart, ref sourceStart, (uint)pos);
+        Unsafe.Add(ref resultStart, pos) = (byte)CharAndSign;
+        pos += sizeof(char);
 
-            var size = _key1.Length * sizeof(char);
-            sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_key1.AsSpan()));
-            Unsafe.CopyBlockUnaligned(ref Unsafe.Add(ref resultStart, pos), ref sourceStart, (uint)size);
-            pos += size;
+        size = _key2.Length * sizeof(char);
+        sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_key2.AsSpan()));
+        Unsafe.CopyBlockUnaligned(ref Unsafe.Add(ref resultStart, pos), ref sourceStart, (uint)size);
+        pos += size;
 
-            Unsafe.Add(ref resultStart, pos) = (byte)CharEqualsSign;
-            pos += sizeof(char);
+        Unsafe.Add(ref resultStart, pos) = (byte)CharEqualsSign;
+        pos += sizeof(char);
 
-            size = _value1.Length * sizeof(char);
-            sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_value1.AsSpan()));
-            Unsafe.CopyBlockUnaligned(ref Unsafe.Add(ref resultStart, pos), ref sourceStart, (uint)size);
-            pos += size;
+        size = _value2.Length * sizeof(char);
+        sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_value2.AsSpan()));
+        Unsafe.CopyBlockUnaligned(ref Unsafe.Add(ref resultStart, pos), ref sourceStart, (uint)size);
 
-            Unsafe.Add(ref resultStart, pos) = (byte)CharAndSign;
-            pos += sizeof(char);
-
-            size = _key2.Length * sizeof(char);
-            sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_key2.AsSpan()));
-            Unsafe.CopyBlockUnaligned(ref Unsafe.Add(ref resultStart, pos), ref sourceStart, (uint)size);
-            pos += size;
-
-            Unsafe.Add(ref resultStart, pos) = (byte)CharEqualsSign;
-            pos += sizeof(char);
-
-            size = _value2.Length * sizeof(char);
-            sourceStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(_value2.AsSpan()));
-            Unsafe.CopyBlockUnaligned(ref Unsafe.Add(ref resultStart, pos), ref sourceStart, (uint)size);
-
-            return result;
-        }
+        return result;
     }
 }
