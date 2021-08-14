@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 
 namespace Benchmarks.CSharp;
 
@@ -18,7 +17,6 @@ public class GetHashCodeBenchmark
     public int Property4 { get; set; } = 1;
 
     [Benchmark]
-    [SuppressMessage("Style", "IDE0050:タプルに変換")]
     public int AnonymousType()
         => new { Property1, Property2, Property3, Property4 }.GetHashCode();
 
