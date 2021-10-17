@@ -26,7 +26,7 @@ public static class StringHelper
             sb.Append(CreateUtf16String());
         }
 
-        return sb.ToString().Substring(0, length);
+        return sb.ToString()[..length];
     }
 
     /// <summary>

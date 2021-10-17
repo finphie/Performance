@@ -45,7 +45,7 @@ public class ULongFormattingBenchmark
     {
         Span<byte> byteBuffer = stackalloc byte[BufferLength];
         Utf8Formatter.TryFormat(value, byteBuffer, out var byteLength);
-        return byteBuffer.Slice(0, byteLength).ToArray();
+        return byteBuffer[..byteLength].ToArray();
     }
 
     [Benchmark]
