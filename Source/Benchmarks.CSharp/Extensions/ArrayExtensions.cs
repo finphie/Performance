@@ -12,8 +12,10 @@ public static class ArrayExtensions
     /// <param name="array">対象の配列</param>
     /// <param name="first">配列の1番目の要素</param>
     /// <param name="second">配列の2番目の要素</param>
-    public static void Deconstruct<T>(this T[] array!!, out T first, out T second)
+    public static void Deconstruct<T>(this T[] array, out T first, out T second)
     {
+        ArgumentNullException.ThrowIfNull(array);
+
         if (array.Length < 2)
         {
             throw new ArgumentOutOfRangeException(nameof(array));
@@ -31,8 +33,10 @@ public static class ArrayExtensions
     /// <param name="second">配列の2番目の要素</param>
     /// <param name="third">配列の3番目の要素</param>
     /// <param name="fourth">配列の4番目の要素></param>
-    public static void Deconstruct<T>(this T[] array!!, out T first, out T second, out T third, out T fourth)
+    public static void Deconstruct<T>(this T[] array, out T first, out T second, out T third, out T fourth)
     {
+        ArgumentNullException.ThrowIfNull(array);
+
         if (array.Length < 4)
         {
             throw new ArgumentOutOfRangeException(nameof(array));

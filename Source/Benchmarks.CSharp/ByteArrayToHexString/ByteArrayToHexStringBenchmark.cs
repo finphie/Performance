@@ -50,7 +50,7 @@ public class ByteArrayToHexStringBenchmark
         var i = 0;
         foreach (var sourceByte in _source)
         {
-            sourceByte.TryFormat(span[i..], out _, "x2");
+            sourceByte.TryFormat(span[i..], out _, "x2", CultureInfo.InvariantCulture);
             i += 2;
         }
 
@@ -69,13 +69,13 @@ public class ByteArrayToHexStringBenchmark
         const string Format = "x16";
 
         BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 0))
-            .TryFormat(resultSpan, out _, Format);
+            .TryFormat(resultSpan, out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 1))
-            .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 2))
-            .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(Unsafe.Add(ref sourceStart, 3))
-            .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format, CultureInfo.InvariantCulture);
 
         return result;
     }
@@ -97,13 +97,13 @@ public class ByteArrayToHexStringBenchmark
         // cf. https://github.com/dotnet/corefx/blob/v2.2.0/src/Common/src/CoreLib/System/BitConverter.cs#L293
         // cf. https://github.com/dotnet/corefx/blob/v2.2.0/src/Common/src/CoreLib/System/Runtime/InteropServices/MemoryMarshal.cs#L165
         BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 0)))
-            .TryFormat(resultSpan, out _, Format);
+            .TryFormat(resultSpan, out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 1)))
-            .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 2)))
-            .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(Unsafe.ReadUnaligned<long>(ref Unsafe.Add(ref sourceStart, Size * 3)))
-            .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format, CultureInfo.InvariantCulture);
 
         return result;
     }
@@ -122,13 +122,13 @@ public class ByteArrayToHexStringBenchmark
         const string Format = "x16";
 
         BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-            .TryFormat(resultSpan, out _, Format);
+            .TryFormat(resultSpan, out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-            .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 1)..], out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-            .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 2)..], out _, Format, CultureInfo.InvariantCulture);
         BinaryPrimitives.ReverseEndianness(br.ReadInt64())
-            .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format);
+            .TryFormat(resultSpan[(Size * 2 * 3)..], out _, Format, CultureInfo.InvariantCulture);
 
         return result;
     }
