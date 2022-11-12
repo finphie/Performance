@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Enums.NET" Version="4.0.0" />
-    <PackageReference Include="FastEnum" Version="1.7.0" />
+    <PackageReference Include="FastEnum" Version="1.8.0" />
   </ItemGroup>
 
 </Project>
