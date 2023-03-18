@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Benchmarks.CSharp.ByteArrayToHexString;
+namespace Performance.Benchmarks.ByteArrayToHexString;
 
 public sealed class ByteArrayHelperXmlSerializationWriter : XmlSerializationWriter
 {

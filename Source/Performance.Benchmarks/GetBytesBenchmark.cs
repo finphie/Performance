@@ -2,7 +2,7 @@
 using System.Text.Unicode;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// UTF-16文字列からUTF-8Byte配列に変換

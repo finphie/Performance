@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 [Config(typeof(BenchmarkConfig))]
 public class ArrayClearBenchmark

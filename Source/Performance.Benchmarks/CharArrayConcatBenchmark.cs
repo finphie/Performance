@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// char配列をUTF-16文字列に変換

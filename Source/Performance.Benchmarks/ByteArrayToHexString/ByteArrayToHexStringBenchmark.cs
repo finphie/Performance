@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp.ByteArrayToHexString;
+namespace Performance.Benchmarks.ByteArrayToHexString;
 
 /// <summary>
 /// byte配列を16進数stringに変換

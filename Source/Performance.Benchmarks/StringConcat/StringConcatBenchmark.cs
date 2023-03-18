@@ -2,10 +2,10 @@
 using System.Runtime.InteropServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
-using Benchmarks.CSharp.Extensions;
-using Benchmarks.CSharp.Helpers;
+using Performance.Benchmarks.Extensions;
+using Performance.Benchmarks.Helpers;
 
-namespace Benchmarks.CSharp.StringConcat;
+namespace Performance.Benchmarks.StringConcat;
 
 /// <summary>
 /// 文字列連結処理のベンチマーク

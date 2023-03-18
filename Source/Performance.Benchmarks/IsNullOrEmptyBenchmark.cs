@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// IsNullOrEmptyのベンチマーク

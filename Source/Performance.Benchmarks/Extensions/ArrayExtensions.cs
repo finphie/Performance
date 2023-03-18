@@ -1,4 +1,4 @@
-﻿namespace Benchmarks.CSharp.Extensions;
+﻿namespace Performance.Benchmarks.Extensions;
 
 /// <summary>
 /// 配列の拡張メソッド

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// char配列から2文字を抽出してstringに変換

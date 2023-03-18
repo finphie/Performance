@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Benchmarks.CSharp.ByteArrayToHexString;
+namespace Performance.Benchmarks.ByteArrayToHexString;
 
 static class ByteArrayHelperLookup
 {

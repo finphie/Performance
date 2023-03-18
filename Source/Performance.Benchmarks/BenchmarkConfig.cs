@@ -5,7 +5,7 @@ using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Jobs;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 public class BenchmarkConfig : ManualConfig
 {

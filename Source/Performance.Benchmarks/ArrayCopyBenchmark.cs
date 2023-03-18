@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// byte配列をコピーする処理のベンチマーク

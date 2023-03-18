@@ -2,9 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using BenchmarkDotNet.Attributes;
-using Benchmarks.CSharp.Helpers;
+using Performance.Benchmarks.Helpers;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 [Config(typeof(BenchmarkConfig))]
 public class HmacHha256Benchmark : IDisposable

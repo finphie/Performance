@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Web;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// URI文字列連結処理のベンチマーク

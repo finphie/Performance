@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
-namespace Benchmarks.CSharp.EnumGetEnumMember;
+namespace Performance.Benchmarks.EnumGetEnumMember;
 
 static class EnumMemberCache<T>
         where T : struct, Enum

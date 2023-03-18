@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// doubleをstringに変換

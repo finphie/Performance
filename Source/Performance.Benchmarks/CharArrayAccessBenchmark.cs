@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// stringやchar配列から、特定の要素2つにアクセスする処理のベンチマークです。

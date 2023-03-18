@@ -4,7 +4,7 @@ using BenchmarkDotNet.Attributes;
 using EnumsNET;
 using FastEnumUtility;
 
-namespace Benchmarks.CSharp.EnumGetEnumMember;
+namespace Performance.Benchmarks.EnumGetEnumMember;
 
 /// <summary>
 /// EnumMemberを取得する処理のベンチマーク

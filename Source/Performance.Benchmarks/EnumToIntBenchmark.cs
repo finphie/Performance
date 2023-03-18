@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 using EnumsNET;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// enumの値を取得

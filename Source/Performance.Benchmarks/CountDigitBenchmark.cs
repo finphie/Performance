@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// 桁数を取得する

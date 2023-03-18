@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Benchmarks.CSharp.Helpers;
+namespace Performance.Benchmarks.Helpers;
 
 /// <summary>
 /// <see cref="string"/>のヘルパークラス

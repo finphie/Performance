@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 enum Test
 {

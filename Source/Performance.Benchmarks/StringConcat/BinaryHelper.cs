@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Benchmarks.CSharp.StringConcat;
+namespace Performance.Benchmarks.StringConcat;
 
 static partial class BinaryHelper
 {

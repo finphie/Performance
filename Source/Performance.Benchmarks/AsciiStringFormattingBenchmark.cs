@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// ASCII文字列をUTF-8のbyte配列に変換する処理のベンチマーク

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace Benchmarks.CSharp;
+namespace Performance.Benchmarks;
 
 /// <summary>
 /// ulongをUTF-8のbyte配列に変換する処理のベンチマーク

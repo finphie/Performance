@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
-namespace Benchmarks.CSharp.EnumGetEnumMember;
+namespace Performance.Benchmarks.EnumGetEnumMember;
 
 static class EnumHelperConcurrentDictionaryBaseEnumKey
 {
