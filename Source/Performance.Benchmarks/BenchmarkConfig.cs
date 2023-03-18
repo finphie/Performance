@@ -17,22 +17,22 @@ public class BenchmarkConfig : ManualConfig
         AddDiagnoser(MemoryDiagnoser.Default);
         AddDiagnoser(new DisassemblyDiagnoser(new DisassemblyDiagnoserConfig(printSource: true)));
 
-        AddJob(Job.Default.WithRuntime(CoreRuntime.Core60)
+        AddJob(Job.Default.WithRuntime(CoreRuntime.Core70)
             .WithId("Default"));
 
-        AddJob(Job.Default.WithRuntime(CoreRuntime.Core60)
+        AddJob(Job.Default.WithRuntime(CoreRuntime.Core70)
             .WithEnvironmentVariables(
                 new EnvironmentVariable("COMPlus_TieredCompilation", "0"))
             .WithId("NoTieredCompilation"));
 
-        AddJob(Job.Default.WithRuntime(CoreRuntime.Core60)
+        AddJob(Job.Default.WithRuntime(CoreRuntime.Core70)
             .WithEnvironmentVariables(
                 new EnvironmentVariable("COMPlus_ReadyToRun", "0"),
                 new EnvironmentVariable("COMPlus_TC_QuickJitForLoops", "1"),
                 new EnvironmentVariable("COMPlus_TieredPGO", "0"))
             .WithId("NoReadyToRun, QuickJitForLoops"));
 
-        AddJob(Job.Default.WithRuntime(CoreRuntime.Core60)
+        AddJob(Job.Default.WithRuntime(CoreRuntime.Core70)
             .WithEnvironmentVariables(
                 new EnvironmentVariable("COMPlus_ReadyToRun", "0"),
                 new EnvironmentVariable("COMPlus_TC_QuickJitForLoops", "1"),
