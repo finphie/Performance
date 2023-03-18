@@ -1,3 +1,3 @@
-# Benchmarks
+# Performance
 
 各種ベンチマーク
