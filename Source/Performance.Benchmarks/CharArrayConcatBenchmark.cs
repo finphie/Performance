@@ -9,7 +9,7 @@ namespace Performance.Benchmarks;
 [Config(typeof(BenchmarkConfig))]
 public class CharArrayConcatBenchmark
 {
-    char[] _source;
+    char[] _source = null!;
 
     [Params(10, 100, 512, 1024, 2048, 10000)]
     public int ArraySize { get; set; }

@@ -37,9 +37,9 @@ public class EnumGetEnumMemberBenchmark
 
     [Benchmark]
     public string EnumsNet()
-        => Test.A.GetAttributes().Get<EnumMemberAttribute>().Value;
+        => Test.A.GetAttributes()!.Get<EnumMemberAttribute>()!.Value!;
 
     [Benchmark]
     public string FastEnum()
-        => Test.A.GetEnumMemberValue();
+        => Test.A.GetEnumMemberValue()!;
 }

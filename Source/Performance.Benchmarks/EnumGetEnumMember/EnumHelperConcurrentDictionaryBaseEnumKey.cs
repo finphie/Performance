@@ -15,5 +15,5 @@ static class EnumHelperConcurrentDictionaryBaseEnumKey
         => Dic.GetOrAdd(value, e =>
             typeof(T)
                 .GetField(e.ToString())
-                .GetCustomAttribute<EnumMemberAttribute>().Value);
+                !.GetCustomAttribute<EnumMemberAttribute>()!.Value!);
 }

@@ -61,7 +61,7 @@ public class EnumToIntBenchmark<T>
 
     [Benchmark]
     [Arguments(Test.A)]
-    public int EnumsNetToInt32(T @enum) => @enum.GetMember().ToInt32();
+    public int EnumsNetToInt32(T @enum) => @enum.GetMember()!.ToInt32();
 
     [Benchmark]
     [Arguments(Test.A)]

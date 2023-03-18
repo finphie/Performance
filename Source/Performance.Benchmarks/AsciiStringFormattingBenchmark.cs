@@ -55,7 +55,7 @@ public class AsciiStringFormattingBenchmark
         var byteBuffer = new byte[value.Length];
         for (var i = 0; i < byteBuffer.Length; i++)
         {
-            byteBuffer[i] = (byte)Unsafe.AddByteOffset(ref valueStart, (IntPtr)(i * sizeof(char)));
+            byteBuffer[i] = (byte)Unsafe.AddByteOffset(ref valueStart, i * sizeof(char));
         }
 
         return byteBuffer;
@@ -71,7 +71,7 @@ public class AsciiStringFormattingBenchmark
         for (var i = 0; i < byteBuffer.Length; i++)
         {
             byteBuffer[i] = (byte)valueStart;
-            valueStart = ref Unsafe.AddByteOffset(ref valueStart, (IntPtr)sizeof(char));
+            valueStart = ref Unsafe.AddByteOffset(ref valueStart, sizeof(char));
         }
 
         return byteBuffer;

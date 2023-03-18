@@ -16,7 +16,7 @@ static class EnumMemberCache<T>
         Table = new string[values.Length];
         for (var i = 0; i < values.Length; i++)
         {
-            Table[i] = values[i].GetCustomAttribute<EnumMemberAttribute>().Value;
+            Table[i] = values[i].GetCustomAttribute<EnumMemberAttribute>()!.Value!;
         }
     }
 

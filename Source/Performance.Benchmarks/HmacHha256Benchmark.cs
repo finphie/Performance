@@ -21,8 +21,8 @@ public class HmacHha256Benchmark : IDisposable
 
     bool _disposed;
 
-    byte[] _source1;
-    byte[] _source2;
+    byte[] _source1 = null!;
+    byte[] _source2 = null!;
 
     public HmacHha256Benchmark()
     {
@@ -73,7 +73,7 @@ public class HmacHha256Benchmark : IDisposable
     {
         _hmac.TransformBlock(_source1, 0, _source1.Length, null, 0);
         _hmac.TransformFinalBlock(_source2, 0, _source2.Length);
-        return _hmac.Hash;
+        return _hmac.Hash!;
     }
 
     [Benchmark]

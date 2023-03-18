@@ -5,7 +5,7 @@ namespace Performance.Benchmarks;
 [Config(typeof(BenchmarkConfig))]
 public class ArrayClearBenchmark
 {
-    byte[] _buffer;
+    byte[] _buffer = null!;
 
     [Params(10, 100, 1000)]
     public int Length { get; set; }

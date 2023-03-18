@@ -15,13 +15,13 @@ static class EnumHelperHashtable
     {
         if (Dic.ContainsKey(value))
         {
-            return Dic[value] as string;
+            return (Dic[value] as string)!;
         }
 
         var memberValue = typeof(T)
             .GetField(value.ToString())
-            .GetCustomAttribute<EnumMemberAttribute>().Value;
+            !.GetCustomAttribute<EnumMemberAttribute>()!.Value;
         Dic[value] = memberValue;
-        return memberValue;
+        return memberValue!;
     }
 }

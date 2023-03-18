@@ -9,7 +9,7 @@ namespace Performance.Benchmarks;
 [Config(typeof(BenchmarkConfig))]
 public class IsNullOrEmptyBenchmark
 {
-    public static IEnumerable<string> Values => new[]
+    public static IEnumerable<string?> Values => new[]
     {
         null,
         string.Empty,

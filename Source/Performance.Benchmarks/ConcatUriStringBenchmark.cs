@@ -14,13 +14,13 @@ public class ConcatUriStringBenchmark
     const char CharAndSign = '&';
     const char CharEqualsSign = '=';
 
-    string _uri;
+    string _uri = null!;
 
-    string _key1;
-    string _key2;
+    string _key1 = null!;
+    string _key2 = null!;
 
-    string _value1;
-    string _value2;
+    string _value1 = null!;
+    string _value2 = null!;
 
     [GlobalSetup]
     public void Setup()

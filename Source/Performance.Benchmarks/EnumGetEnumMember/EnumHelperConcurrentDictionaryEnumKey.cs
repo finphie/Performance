@@ -13,7 +13,7 @@ static class EnumHelperConcurrentDictionaryEnumKey
         => Cache<T>.Dic.GetOrAdd(value, e =>
             typeof(T)
                 .GetField(e.ToString())
-                .GetCustomAttribute<EnumMemberAttribute>().Value);
+                !.GetCustomAttribute<EnumMemberAttribute>()!.Value!);
 
     static class Cache<T>
         where T : struct, Enum

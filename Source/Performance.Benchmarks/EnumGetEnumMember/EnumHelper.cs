@@ -11,5 +11,5 @@ static class EnumHelper
         where T : struct, Enum
         => typeof(T)
             .GetField(value.ToString())
-            .GetCustomAttribute<EnumMemberAttribute>().Value;
+            !.GetCustomAttribute<EnumMemberAttribute>()!.Value!;
 }
