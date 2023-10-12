@@ -13,11 +13,11 @@ public class CharArrayAccessBenchmark
     const int Count = 32;
     const string SourceConstString = "0123456789abcdef";
 
-    static readonly char[] SourceChars =
-    {
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-        'a', 'b', 'c', 'd', 'e', 'f'
-    };
+#pragma warning disable SA1010 // Opening square brackets should be spaced correctly
+#pragma warning disable IDE0055
+    static readonly char[] SourceChars = [..SourceConstString];
+#pragma warning restore IDE0055
+#pragma warning restore SA1010 // Opening square brackets should be spaced correctly
 
     [Params(3)]
     public int Index1 { get; set; }

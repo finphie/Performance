@@ -7,7 +7,9 @@ namespace Performance.Benchmarks.EnumGetEnumMember;
 
 static class EnumHelperHashtable
 {
-    static readonly Hashtable Dic = new();
+#pragma warning disable SA1010 // Opening square brackets should be spaced correctly
+    static readonly Hashtable Dic = [];
+#pragma warning restore SA1010 // Opening square brackets should be spaced correctly
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetEnumMemberValue<T>(T value)
