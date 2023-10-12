@@ -41,11 +41,11 @@ public class StringCreateBenchmark
     [Benchmark]
     public string SpanStackalloc()
     {
-        Span<char> span = stackalloc char[]
-        {
+        Span<char> span =
+        [
             _source[1],
             _source[10]
-        };
+        ];
         return new(span);
     }
 
