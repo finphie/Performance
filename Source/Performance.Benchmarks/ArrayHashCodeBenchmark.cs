@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.IO.Hashing;
+using BenchmarkDotNet.Attributes;
 using CommunityToolkit.HighPerformance;
 using CommunityToolkit.HighPerformance.Helpers;
 
@@ -25,6 +26,13 @@ public class ArrayHashCodeBenchmark
         var hash = default(HashCode);
         hash.AddBytes(_data);
         return hash.ToHashCode();
+    }
+
+    [Benchmark]
+    public int XxHash()
+    {
+        var hash = XxHash3.HashToUInt64(_data);
+        return (int)hash ^ (int)(hash >> 32);
     }
 
     [Benchmark]
