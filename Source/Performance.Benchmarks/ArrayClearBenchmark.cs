@@ -2,7 +2,6 @@
 
 namespace Performance.Benchmarks;
 
-[Config(typeof(BenchmarkConfig))]
 public class ArrayClearBenchmark
 {
     byte[] _buffer = null!;

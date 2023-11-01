@@ -8,7 +8,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// char配列から2文字を抽出してstringに変換
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class StringCreateBenchmark
 {
     char[] _source = null!;

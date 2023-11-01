@@ -10,7 +10,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// ulongをUTF-8のbyte配列に変換する処理のベンチマーク
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class ULongFormattingBenchmark
 {
     const int BufferLength = 20;

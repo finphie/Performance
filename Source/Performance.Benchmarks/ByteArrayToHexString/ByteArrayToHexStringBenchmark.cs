@@ -10,7 +10,6 @@ namespace Performance.Benchmarks.ByteArrayToHexString;
 /// byte配列を16進数stringに変換
 /// cf. https://stackoverflow.com/q/311165
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class ByteArrayToHexStringBenchmark
 {
     // HMAC-SHA256は256bit

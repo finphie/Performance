@@ -7,7 +7,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// UTF-16文字列からUTF-8Byte配列に変換
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class GetBytesBenchmark
 {
     readonly string _data = Guid.NewGuid().ToString();

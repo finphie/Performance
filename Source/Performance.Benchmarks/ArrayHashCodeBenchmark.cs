@@ -5,7 +5,6 @@ using CommunityToolkit.HighPerformance.Helpers;
 
 namespace Performance.Benchmarks;
 
-[Config(typeof(BenchmarkConfig))]
 public class ArrayHashCodeBenchmark
 {
     byte[] _data = null!;

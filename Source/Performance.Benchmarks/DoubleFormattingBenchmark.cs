@@ -8,7 +8,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// doubleをstringに変換
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class DoubleFormattingBenchmark
 {
     const int BufferSize = 32;

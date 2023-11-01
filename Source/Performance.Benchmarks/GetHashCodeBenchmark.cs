@@ -5,7 +5,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// GetHashCodeのベンチマーク
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class GetHashCodeBenchmark
 {
     public long Property1 { get; set; } = long.MaxValue;

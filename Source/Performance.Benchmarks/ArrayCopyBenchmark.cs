@@ -7,13 +7,12 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// byte配列をコピーする処理のベンチマーク
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class ArrayCopyBenchmark
 {
     byte[] _source = null!;
     byte[] _destination = null!;
 
-    [Params(10, 100, 512, 1024, 2048, 10000)]
+    [Params(10, 100, 1000, 10000, 100000, 1000000)]
     public int ArraySize { get; set; }
 
     [GlobalSetup]
@@ -42,7 +41,7 @@ public class ArrayCopyBenchmark
     [Benchmark]
     public unsafe void BufferMemoryCopy()
     {
-        fixed (void* source = &_source[0], destination = &_destination[0])
+        fixed (void* source = _source, destination = _destination)
         {
             Buffer.MemoryCopy(source, destination, _destination.Length, _source.Length);
         }
@@ -51,7 +50,7 @@ public class ArrayCopyBenchmark
     [Benchmark]
     public unsafe void MarshalCopy()
     {
-        fixed (byte* source = &_source[0])
+        fixed (byte* source = _source)
         {
             Marshal.Copy((IntPtr)source, _destination, 0, _destination.Length);
         }
@@ -59,17 +58,17 @@ public class ArrayCopyBenchmark
 
     [Benchmark]
     public void UnsafeCopyBlock()
-        => Unsafe.CopyBlock(ref _destination[0], ref _source[0], (uint)_destination.Length);
+        => Unsafe.CopyBlock(ref MemoryMarshal.GetArrayDataReference(_destination), ref MemoryMarshal.GetArrayDataReference(_source), (uint)_destination.Length);
 
     [Benchmark]
     public void UnsafeCopyBlockUnaligned()
-        => Unsafe.CopyBlockUnaligned(ref _destination[0], ref _source[0], (uint)_destination.Length);
+        => Unsafe.CopyBlockUnaligned(ref MemoryMarshal.GetArrayDataReference(_destination), ref MemoryMarshal.GetArrayDataReference(_source), (uint)_destination.Length);
 
     [Benchmark]
     public unsafe void UnmanagedMemoryStreamCopyTo()
     {
         var length = _destination.Length;
-        fixed (byte* source = &_source[0], destination = &_destination[0])
+        fixed (byte* source = _source, destination = _destination)
         {
             using var streamSource = new UnmanagedMemoryStream(source, _source.Length);
             using var streamDestination = new UnmanagedMemoryStream(destination, length, length, FileAccess.Write);
@@ -80,7 +79,7 @@ public class ArrayCopyBenchmark
     [Benchmark]
     public unsafe void UnmanagedMemoryStreamRead()
     {
-        fixed (byte* source = &_source[0])
+        fixed (byte* source = _source)
         {
             using var streamSource = new UnmanagedMemoryStream(source, _source.Length);
             streamSource.Read(_destination);
@@ -91,7 +90,7 @@ public class ArrayCopyBenchmark
     public unsafe void UnmanagedMemoryStreamWrite()
     {
         var length = _destination.Length;
-        fixed (byte* destination = &_destination[0])
+        fixed (byte* destination = _destination)
         {
             using var streamDestination = new UnmanagedMemoryStream(destination, length, length, FileAccess.Write);
             streamDestination.Write(_source);

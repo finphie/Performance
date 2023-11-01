@@ -8,7 +8,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// URI文字列連結処理のベンチマーク
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class ConcatUriStringBenchmark
 {
     const char CharAndSign = '&';

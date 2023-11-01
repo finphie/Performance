@@ -10,7 +10,6 @@ namespace Performance.Benchmarks.StringConcat;
 /// <summary>
 /// 文字列連結処理のベンチマーク
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class StringConcatBenchmark
 {
     const string Count04 = "04";
