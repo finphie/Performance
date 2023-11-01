@@ -9,7 +9,6 @@ namespace Performance.Benchmarks.EnumGetEnumMember;
 /// <summary>
 /// EnumMemberを取得する処理のベンチマーク
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class EnumGetEnumMemberBenchmark
 {
     public EnumGetEnumMemberBenchmark()

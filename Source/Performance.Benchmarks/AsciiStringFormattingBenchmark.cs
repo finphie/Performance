@@ -9,7 +9,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// ASCII文字列をUTF-8のbyte配列に変換する処理のベンチマーク
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class AsciiStringFormattingBenchmark
 {
     public static IEnumerable<string> Values => new[]

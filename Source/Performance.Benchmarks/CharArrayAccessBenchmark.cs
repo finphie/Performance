@@ -7,7 +7,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// stringやchar配列から、特定の要素2つにアクセスする処理のベンチマークです。
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class CharArrayAccessBenchmark
 {
     const int Count = 32;

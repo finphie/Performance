@@ -6,7 +6,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// 桁数を取得する
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class CountDigitBenchmark
 {
     public static IEnumerable<ulong> Values => new[]

@@ -6,7 +6,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// IsNullOrEmptyのベンチマーク
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class IsNullOrEmptyBenchmark
 {
     public static IEnumerable<string?> Values => new[]

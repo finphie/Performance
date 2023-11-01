@@ -6,7 +6,6 @@ using Performance.Benchmarks.Helpers;
 
 namespace Performance.Benchmarks;
 
-[Config(typeof(BenchmarkConfig))]
 public class HmacHha256Benchmark : IDisposable
 {
     // キーの長さは64文字固定

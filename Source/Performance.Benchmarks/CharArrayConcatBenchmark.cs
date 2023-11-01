@@ -6,7 +6,6 @@ namespace Performance.Benchmarks;
 /// <summary>
 /// char配列をUTF-16文字列に変換
 /// </summary>
-[Config(typeof(BenchmarkConfig))]
 public class CharArrayConcatBenchmark
 {
     char[] _source = null!;
