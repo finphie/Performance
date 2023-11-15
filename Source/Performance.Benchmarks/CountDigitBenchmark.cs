@@ -40,8 +40,8 @@ public class CountDigitBenchmark
     /// CoreFXでの実装です。
     /// </summary>
     /// <remarks>
-    /// System.Buffers.Text.FormattingHelpers.CountDigits
-    /// cf. https://github.com/dotnet/corefx/blob/v2.2.0/src/Common/src/CoreLib/System/Buffers/Text/FormattingHelpers.CountDigits.cs#L13-L66
+    /// <para>System.Buffers.Text.FormattingHelpers.CountDigits</para>
+    /// <para>https://github.com/dotnet/corefx/blob/v2.2.0/src/Common/src/CoreLib/System/Buffers/Text/FormattingHelpers.CountDigits.cs#L13-L66</para>
     /// </remarks>
     /// <param name="value">数値</param>
     /// <returns>桁数</returns>
