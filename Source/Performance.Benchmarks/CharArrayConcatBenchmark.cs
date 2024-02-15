@@ -8,7 +8,7 @@ namespace Performance.Benchmarks;
 /// </summary>
 public class CharArrayConcatBenchmark
 {
-    char[] _source = null!;
+    char[] _source;
 
     [Params(10, 100, 512, 1024, 2048, 10000)]
     public int ArraySize { get; set; }

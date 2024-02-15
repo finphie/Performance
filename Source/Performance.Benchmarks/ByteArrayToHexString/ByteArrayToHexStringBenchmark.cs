@@ -14,7 +14,7 @@ public class ByteArrayToHexStringBenchmark
 {
     // HMAC-SHA256は256bit
     const int ArraySize = 32;
-    byte[] _source = null!;
+    byte[] _source;
 
     [GlobalSetup]
     public void Setup()

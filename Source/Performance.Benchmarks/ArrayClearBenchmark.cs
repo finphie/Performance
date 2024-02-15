@@ -4,7 +4,7 @@ namespace Performance.Benchmarks;
 
 public class ArrayClearBenchmark
 {
-    byte[] _buffer = null!;
+    byte[] _buffer;
 
     [Params(10, 100, 1000)]
     public int Length { get; set; }

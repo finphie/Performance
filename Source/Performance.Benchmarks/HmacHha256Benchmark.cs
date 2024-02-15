@@ -20,8 +20,8 @@ public class HmacHha256Benchmark : IDisposable
 
     bool _disposed;
 
-    byte[] _source1 = null!;
-    byte[] _source2 = null!;
+    byte[] _source1;
+    byte[] _source2;
 
     public HmacHha256Benchmark()
     {

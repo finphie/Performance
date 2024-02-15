@@ -9,8 +9,8 @@ namespace Performance.Benchmarks;
 /// </summary>
 public class ArrayCopyBenchmark
 {
-    byte[] _source = null!;
-    byte[] _destination = null!;
+    byte[] _source;
+    byte[] _destination;
 
     [Params(10, 100, 1000, 10000, 100000, 1000000)]
     public int ArraySize { get; set; }

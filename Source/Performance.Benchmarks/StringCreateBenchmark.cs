@@ -10,7 +10,7 @@ namespace Performance.Benchmarks;
 /// </summary>
 public class StringCreateBenchmark
 {
-    char[] _source = null!;
+    char[] _source;
 
     [GlobalSetup]
     public void Setup() => _source = "0123456789abcdef".ToCharArray();
