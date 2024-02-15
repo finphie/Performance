@@ -5,7 +5,7 @@ namespace Performance.Benchmarks.Helpers;
 /// <summary>
 /// <see cref="byte"/>配列のヘルパークラス
 /// </summary>
-public static class ByteArrayHelper
+static class ByteArrayHelper
 {
     /// <summary>
     /// UTF-8のbyte配列を作成します。

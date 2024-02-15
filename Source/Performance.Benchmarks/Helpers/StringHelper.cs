@@ -5,7 +5,7 @@ namespace Performance.Benchmarks.Helpers;
 /// <summary>
 /// <see cref="string"/>のヘルパークラス
 /// </summary>
-public static class StringHelper
+static class StringHelper
 {
     /// <summary>
     /// UTF-16文字列を作成します。
