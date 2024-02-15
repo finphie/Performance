@@ -3,7 +3,7 @@
 /// <summary>
 /// 配列の拡張メソッド
 /// </summary>
-public static class ArrayExtensions
+static class ArrayExtensions
 {
     /// <summary>
     /// 指定された配列を分解します。

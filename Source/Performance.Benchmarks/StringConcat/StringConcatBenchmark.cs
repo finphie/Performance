@@ -16,11 +16,9 @@ public class StringConcatBenchmark
     const string Count08 = "08";
     const string Count12 = "12";
 
-#pragma warning disable CS8618 // null 非許容のフィールドには、コンストラクターの終了時に null 以外の値が入っていなければなりません。Null 許容として宣言することをご検討ください。
     string _source00, _source01, _source02, _source03;
     string _source04, _source05, _source06, _source07;
     string _source08, _source09, _source10, _source11;
-#pragma warning restore CS8618 // null 非許容のフィールドには、コンストラクターの終了時に null 以外の値が入っていなければなりません。Null 許容として宣言することをご検討ください。
 
     [Params(5, 10, 16, 32)]
     public int Length { get; set; }
