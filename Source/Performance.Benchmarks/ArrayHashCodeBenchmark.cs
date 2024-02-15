@@ -7,7 +7,7 @@ namespace Performance.Benchmarks;
 
 public class ArrayHashCodeBenchmark
 {
-    byte[] _data = null!;
+    byte[] _data;
 
     [Params(10, 100, 1024)]
     public int ArraySize { get; set; }
