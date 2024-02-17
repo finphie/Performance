@@ -3,8 +3,8 @@ using System.Xml.Serialization;
 
 namespace Performance.Benchmarks.ByteArrayToHexString;
 
-[SuppressMessage("Maintainability", "CA1515:パブリック型を内部にすることを検討してください")]
-public sealed class ByteArrayHelperXmlSerializationWriter : XmlSerializationWriter
+[SuppressMessage("Performance", "CA1812:インスタンス化されていない内部クラスを使用しません", Justification = "誤検知")]
+sealed class ByteArrayHelperXmlSerializationWriter : XmlSerializationWriter
 {
     public static string ToHexString(byte[] value) => FromByteArrayHex(value);
 
