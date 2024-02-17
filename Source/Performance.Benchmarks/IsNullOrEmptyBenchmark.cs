@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 
 namespace Performance.Benchmarks;
 
@@ -27,20 +26,8 @@ public class IsNullOrEmptyBenchmark
 
     [Benchmark]
     [ArgumentsSource(nameof(Values))]
-    [SuppressMessage("Style", "IDE0075:Simplify conditional expression")]
     public bool IsNullOrEmpty3(string value)
-        => (value is null || (uint)value.Length <= 0U) ? true : false;
-
-    [Benchmark]
-    [ArgumentsSource(nameof(Values))]
-    public bool IsNullOrEmpty4(string value)
         => (value?.Length ?? 0) == 0;
-
-    [Benchmark]
-    [ArgumentsSource(nameof(Values))]
-    [SuppressMessage("Style", "IDE0075:Simplify conditional expression")]
-    public bool IsNullOrEmpty5(string value)
-        => (value?.Length ?? 0) == 0 ? true : false;
 
     [Benchmark]
     [Arguments("")]
