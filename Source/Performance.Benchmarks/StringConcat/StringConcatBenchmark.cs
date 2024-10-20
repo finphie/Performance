@@ -66,8 +66,14 @@ public class StringConcatBenchmark
     [BenchmarkCategory(Count08)]
     public string StringBuilder08()
     {
-        var length = _source00.Length + _source01.Length + _source02.Length + _source03.Length +
-                     _source04.Length + _source05.Length + _source06.Length + _source07.Length;
+        var length = _source00.Length
+            + _source01.Length
+            + _source02.Length
+            + _source03.Length
+            + _source04.Length
+            + _source05.Length
+            + _source06.Length
+            + _source07.Length;
 
         var sb = new StringBuilder(length);
         sb.Append(_source00);
@@ -86,9 +92,18 @@ public class StringConcatBenchmark
     [BenchmarkCategory(Count12)]
     public string StringBuilder12()
     {
-        var length = _source00.Length + _source01.Length + _source02.Length + _source03.Length +
-                     _source04.Length + _source05.Length + _source06.Length + _source07.Length +
-                     _source08.Length + _source09.Length + _source10.Length + _source11.Length;
+        var length = _source00.Length
+            + _source01.Length
+            + _source02.Length
+            + _source03.Length
+            + _source04.Length
+            + _source05.Length
+            + _source06.Length
+            + _source07.Length
+            + _source08.Length
+            + _source09.Length
+            + _source10.Length
+            + _source11.Length;
 
         var sb = new StringBuilder(length);
         sb.Append(_source00);
@@ -131,8 +146,14 @@ public class StringConcatBenchmark
     [BenchmarkCategory(Count08)]
     public string Span08()
     {
-        var length = _source00.Length + _source01.Length + _source02.Length + _source03.Length +
-                     _source04.Length + _source05.Length + _source06.Length + _source07.Length;
+        var length = _source00.Length
+            + _source01.Length
+            + _source02.Length
+            + _source03.Length
+            + _source04.Length
+            + _source05.Length
+            + _source06.Length
+            + _source07.Length;
 
         var result = new string(default, length);
         var span = MemoryMarshal.CreateSpan(ref MemoryMarshal.GetReference(result.AsSpan()), length);
@@ -160,9 +181,18 @@ public class StringConcatBenchmark
     [BenchmarkCategory(Count12)]
     public string Span12()
     {
-        var length = _source00.Length + _source01.Length + _source02.Length + _source03.Length +
-                     _source04.Length + _source05.Length + _source06.Length + _source07.Length +
-                     _source08.Length + _source09.Length + _source10.Length + _source11.Length;
+        var length = _source00.Length
+            + _source01.Length
+            + _source02.Length
+            + _source03.Length
+            + _source04.Length
+            + _source05.Length
+            + _source06.Length
+            + _source07.Length
+            + _source08.Length
+            + _source09.Length
+            + _source10.Length
+            + _source11.Length;
 
         var result = new string(default, length);
         var span = MemoryMarshal.CreateSpan(ref MemoryMarshal.GetReference(result.AsSpan()), length);
@@ -224,8 +254,14 @@ public class StringConcatBenchmark
     [BenchmarkCategory(Count08)]
     public string UnsafeCopyBlockUnaligned08()
     {
-        var length = _source00.Length + _source01.Length + _source02.Length + _source03.Length +
-                     _source04.Length + _source05.Length + _source06.Length + _source07.Length;
+        var length = _source00.Length
+            + _source01.Length
+            + _source02.Length
+            + _source03.Length
+            + _source04.Length
+            + _source05.Length
+            + _source06.Length
+            + _source07.Length;
 
         var result = new string(default, length);
         ref var resultStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(result.AsSpan()));
@@ -267,9 +303,18 @@ public class StringConcatBenchmark
     [BenchmarkCategory(Count12)]
     public string UnsafeCopyBlockUnaligned12()
     {
-        var length = _source00.Length + _source01.Length + _source02.Length + _source03.Length +
-                     _source04.Length + _source05.Length + _source06.Length + _source07.Length +
-                     _source08.Length + _source09.Length + _source10.Length + _source11.Length;
+        var length = _source00.Length
+            + _source01.Length
+            + _source02.Length
+            + _source03.Length
+            + _source04.Length
+            + _source05.Length
+            + _source06.Length
+            + _source07.Length
+            + _source08.Length
+            + _source09.Length
+            + _source10.Length
+            + _source11.Length;
 
         var result = new string(default, length);
         ref var resultStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(result.AsSpan()));
@@ -357,8 +402,14 @@ public class StringConcatBenchmark
     [BenchmarkCategory(Count08)]
     public string CopyChar08A()
     {
-        var length = _source00.Length + _source01.Length + _source02.Length + _source03.Length +
-                     _source04.Length + _source05.Length + _source06.Length + _source07.Length;
+        var length = _source00.Length
+            + _source01.Length
+            + _source02.Length
+            + _source03.Length
+            + _source04.Length
+            + _source05.Length
+            + _source06.Length
+            + _source07.Length;
 
         var result = new string(default, length);
         ref var resultStart = ref MemoryMarshal.GetReference(result.AsSpan());
@@ -408,9 +459,18 @@ public class StringConcatBenchmark
     [BenchmarkCategory(Count12)]
     public string CopyChar12A()
     {
-        var length = _source00.Length + _source01.Length + _source02.Length + _source03.Length +
-                     _source04.Length + _source05.Length + _source06.Length + _source07.Length +
-                     _source08.Length + _source09.Length + _source10.Length + _source11.Length;
+        var length = _source00.Length
+            + _source01.Length
+            + _source02.Length
+            + _source03.Length
+            + _source04.Length
+            + _source05.Length
+            + _source06.Length
+            + _source07.Length
+            + _source08.Length
+            + _source09.Length
+            + _source10.Length
+            + _source11.Length;
 
         var result = new string(default, length);
         ref var resultStart = ref MemoryMarshal.GetReference(result.AsSpan());

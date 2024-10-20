@@ -9,7 +9,6 @@ static class EnumHelper
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetEnumMemberValue<T>(T value)
         where T : struct, Enum
-        => typeof(T)
-            .GetField(value.ToString())
-            !.GetCustomAttribute<EnumMemberAttribute>()!.Value!;
+        => typeof(T).GetField(value.ToString())!
+            .GetCustomAttribute<EnumMemberAttribute>()!.Value!;
 }

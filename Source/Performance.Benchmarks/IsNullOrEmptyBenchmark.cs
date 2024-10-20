@@ -17,7 +17,7 @@ public class IsNullOrEmptyBenchmark
     [Benchmark]
     [ArgumentsSource(nameof(Values))]
     public bool IsNullOrEmpty1(string value)
-      => value is null || value.Length == 0;
+      => string.IsNullOrEmpty(value);
 
     [Benchmark]
     [ArgumentsSource(nameof(Values))]
@@ -32,18 +32,6 @@ public class IsNullOrEmptyBenchmark
     [Benchmark]
     [Arguments("")]
     [Arguments("abc")]
-    public bool IsNullOrEmptySpan1(ReadOnlySpan<char> value)
-        => value == null || value.Length == 0;
-
-    [Benchmark]
-    [Arguments("")]
-    [Arguments("abc")]
-    public bool IsNullOrEmptySpan2(ReadOnlySpan<char> value)
-        => value == null || (uint)value.Length <= 0U;
-
-    [Benchmark]
-    [Arguments("")]
-    [Arguments("abc")]
-    public bool IsNullOrEmptySpan3(ReadOnlySpan<char> value)
-       => value == null || value.IsEmpty;
+    public bool IsNullOrEmptySpan(ReadOnlySpan<char> value)
+        => value.IsEmpty;
 }

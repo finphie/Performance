@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Performance.Benchmarks.StringConcat;
 
-static partial class BinaryHelper
+static class BinaryHelper
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Copy(in ReadOnlySpan<char> source, ref byte destination, int byteCount)
@@ -36,9 +36,11 @@ static partial class BinaryHelper
         }
 
         const int Count1 = sizeof(char) / sizeof(char);
-        if (charCount >= Count1)
+        if (charCount < Count1)
         {
-            Unsafe.WriteUnaligned(ref Unsafe.Add(ref d, i), Unsafe.ReadUnaligned<char>(ref Unsafe.Add(ref s, i)));
+            return;
         }
+
+        Unsafe.WriteUnaligned(ref Unsafe.Add(ref d, i), Unsafe.ReadUnaligned<char>(ref Unsafe.Add(ref s, i)));
     }
 }

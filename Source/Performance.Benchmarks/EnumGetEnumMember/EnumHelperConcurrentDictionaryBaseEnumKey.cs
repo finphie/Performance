@@ -12,8 +12,8 @@ static class EnumHelperConcurrentDictionaryBaseEnumKey
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetEnumMemberValue<T>(T value)
         where T : struct, Enum
-        => Dic.GetOrAdd(value, e =>
-            typeof(T)
-                .GetField(e.ToString())
-                !.GetCustomAttribute<EnumMemberAttribute>()!.Value!);
+        => Dic.GetOrAdd(
+            value,
+            e => typeof(T).GetField(e.ToString())!
+                .GetCustomAttribute<EnumMemberAttribute>()!.Value!);
 }

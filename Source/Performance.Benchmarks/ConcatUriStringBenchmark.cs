@@ -46,10 +46,12 @@ public class ConcatUriStringBenchmark
     [Benchmark]
     public string UnsafeCopyBlockUnaligned()
     {
-        var length = _uri.Length +
-                     _key1.Length + _value1.Length +
-                     _key2.Length + _value2.Length +
-                     3;
+        var length = _uri.Length
+            + _key1.Length
+            + _value1.Length
+            + _key2.Length
+            + _value2.Length
+            + 3;
 
         var result = new string(default, length);
         ref var resultStart = ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(result.AsSpan()));

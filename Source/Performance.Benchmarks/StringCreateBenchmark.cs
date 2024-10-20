@@ -87,10 +87,10 @@ public class StringCreateBenchmark
         return s;
     }
 
-    // cf. https://github.com/dotnet/corefx/blob/v2.2.0/src/Common/src/CoreLib/System/Char.cs#L994-L998
     [Benchmark]
     public unsafe string CoreFx()
     {
+        // https://github.com/dotnet/corefx/blob/v2.2.0/src/Common/src/CoreLib/System/Char.cs#L994-L998
         var temp = 0U;
         var array = (char*)&temp;
         array[0] = _source[1];

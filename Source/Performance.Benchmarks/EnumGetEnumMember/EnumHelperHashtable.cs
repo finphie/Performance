@@ -18,9 +18,8 @@ static class EnumHelperHashtable
             return (Dic[value] as string)!;
         }
 
-        var memberValue = typeof(T)
-            .GetField(value.ToString())
-            !.GetCustomAttribute<EnumMemberAttribute>()!.Value;
+        var memberValue = typeof(T).GetField(value.ToString())!
+            .GetCustomAttribute<EnumMemberAttribute>()!.Value;
         Dic[value] = memberValue;
         return memberValue!;
     }

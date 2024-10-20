@@ -8,10 +8,7 @@ namespace Performance.Benchmarks;
 
 public class HmacHha256Benchmark : IDisposable
 {
-    // キーの長さは64文字固定
     const int KeyLength = 64;
-
-    // 20文字固定（ulongの最大桁数）
     const int Source1Length = 20;
 
     readonly byte[] _hash;
@@ -98,15 +95,17 @@ public class HmacHha256Benchmark : IDisposable
 
     protected virtual void Dispose(bool disposing)
     {
-        if (!_disposed)
+        if (_disposed)
         {
-            if (disposing)
-            {
-                _hmac?.Dispose();
-                _incrementalHash?.Dispose();
-            }
-
-            _disposed = true;
+            return;
         }
+
+        if (disposing)
+        {
+            _hmac?.Dispose();
+            _incrementalHash?.Dispose();
+        }
+
+        _disposed = true;
     }
 }
