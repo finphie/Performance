@@ -17,14 +17,17 @@ public class StringCreateBenchmark
 
     [Benchmark]
     public string StringCreate()
-        => string.Create(2, _source, (span, c) =>
-        {
-            span[0] = c[1];
-            span[1] = c[10];
-        });
+        => string.Create(
+            2,
+            _source,
+            (span, c) =>
+            {
+                span[0] = c[1];
+                span[1] = c[10];
+            });
 
     [Benchmark]
-    public string New() => new(new[] { _source[1], _source[10] });
+    public string New() => new([_source[1], _source[10]]);
 
     [Benchmark]
     public unsafe string Stackalloc()
