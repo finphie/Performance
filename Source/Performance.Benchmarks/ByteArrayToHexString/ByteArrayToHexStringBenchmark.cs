@@ -24,8 +24,8 @@ public class ByteArrayToHexStringBenchmark
     }
 
     [Benchmark]
-    public string BitConverterToString()
-        => BitConverter.ToString(_source).ToLowerInvariant().Replace("-", string.Empty, StringComparison.Ordinal);
+    public string ConvertToHexStringLower()
+        => Convert.ToHexStringLower(_source);
 
     [Benchmark]
     public string XmlSerializationWriterFromByteArrayHex()
