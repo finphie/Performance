@@ -13,6 +13,7 @@ no-duplicate-heading:
   siblings_only: true
 no-trailing-punctuation:
   punctuation: .,;:!?。，；：！？、
+no-blanks-blockquote: false
 ol-prefix:
   style: one
 no-inline-html:
@@ -36,6 +37,7 @@ fenced-code-language:
     - xml
     - json
     - yaml
+    - shell
     - powershell
     - batch
     - bash
