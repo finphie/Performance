@@ -18,7 +18,7 @@ public class ArrayCopyBenchmark
     [GlobalSetup]
     public void Setup()
     {
-        _source = Enumerable.Repeat<byte>(1, ArraySize).ToArray();
+        _source = [.. Enumerable.Repeat<byte>(1, ArraySize)];
         _destination = new byte[_source.Length];
     }
 

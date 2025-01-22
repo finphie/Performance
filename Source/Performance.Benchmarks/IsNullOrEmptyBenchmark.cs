@@ -7,12 +7,12 @@ namespace Performance.Benchmarks;
 /// </summary>
 public class IsNullOrEmptyBenchmark
 {
-    public static IEnumerable<string?> Values => new[]
+    public static IEnumerable<string?> Values()
     {
-        null,
-        string.Empty,
-        "abc"
-    };
+        yield return null;
+        yield return string.Empty;
+        yield return "abc";
+    }
 
     [Benchmark]
     [ArgumentsSource(nameof(Values))]

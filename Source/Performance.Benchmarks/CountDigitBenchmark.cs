@@ -8,12 +8,12 @@ namespace Performance.Benchmarks;
 /// </summary>
 public class CountDigitBenchmark
 {
-    public static IEnumerable<ulong> Values => new[]
+    public static IEnumerable<ulong> Values()
     {
-        (ulong)DateTimeOffset.Parse("2018/01/01T00:00:00Z", CultureInfo.InvariantCulture).ToUnixTimeMilliseconds(),
-        (ulong)DateTimeOffset.MaxValue.ToUnixTimeMilliseconds(),
-        ulong.MaxValue
-    };
+        yield return (ulong)DateTimeOffset.Parse("2018/01/01T00:00:00Z", CultureInfo.InvariantCulture).ToUnixTimeMilliseconds();
+        yield return (ulong)DateTimeOffset.MaxValue.ToUnixTimeMilliseconds();
+        yield return ulong.MaxValue;
+    }
 
     [Benchmark]
     [ArgumentsSource(nameof(Values))]
