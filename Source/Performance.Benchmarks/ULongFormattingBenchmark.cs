@@ -14,10 +14,10 @@ public class ULongFormattingBenchmark
 {
     const int BufferLength = 20;
 
-    public static IEnumerable<ulong> Values => new[]
+    public static IEnumerable<ulong> Values()
     {
-        (ulong)DateTimeOffset.Parse("2018/01/01T00:00:00Z", CultureInfo.InvariantCulture).ToUnixTimeMilliseconds()
-    };
+        yield return (ulong)DateTimeOffset.Parse("2018/01/01T00:00:00Z", CultureInfo.InvariantCulture).ToUnixTimeMilliseconds();
+    }
 
     [Benchmark]
     [ArgumentsSource(nameof(Values))]

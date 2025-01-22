@@ -14,7 +14,7 @@ public class CharArrayConcatBenchmark
     public int ArraySize { get; set; }
 
     [GlobalSetup]
-    public void Setup() => _source = Enumerable.Repeat('a', ArraySize).ToArray();
+    public void Setup() => _source = [.. Enumerable.Repeat('a', ArraySize)];
 
     [Benchmark]
     public string NewString() => new(_source);

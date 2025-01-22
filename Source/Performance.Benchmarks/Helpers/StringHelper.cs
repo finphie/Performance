@@ -36,5 +36,5 @@ static class StringHelper
     /// <param name="length">文字列の長さ</param>
     /// <returns>UTF-16文字列の配列を返します。</returns>
     public static string[] CreateUtf16Strings(int count, int length)
-        => Enumerable.Range(1, count).Select(_ => CreateUtf16String(length)).ToArray();
+        => [.. Enumerable.Range(1, count).Select(_ => CreateUtf16String(length))];
 }

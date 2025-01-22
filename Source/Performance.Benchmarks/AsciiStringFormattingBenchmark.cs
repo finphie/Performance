@@ -11,10 +11,10 @@ namespace Performance.Benchmarks;
 /// </summary>
 public class AsciiStringFormattingBenchmark
 {
-    public static IEnumerable<string> Values => new[]
+    public static IEnumerable<string> Values()
     {
-        DateTimeOffset.Parse("2018/01/01T00:00:00Z", CultureInfo.InvariantCulture).ToUnixTimeMilliseconds().ToString(CultureInfo.InvariantCulture)
-    };
+        yield return DateTimeOffset.Parse("2018/01/01T00:00:00Z", CultureInfo.InvariantCulture).ToUnixTimeMilliseconds().ToString(CultureInfo.InvariantCulture);
+    }
 
     [Benchmark]
     [ArgumentsSource(nameof(Values))]
