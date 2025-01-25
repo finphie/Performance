@@ -31,7 +31,7 @@ public class ArrayHashCodeBenchmark
     public int XxHash()
     {
         var hash = XxHash3.HashToUInt64(_data);
-        return (int)hash ^ (int)(hash >> 32);
+        return (int)hash;
     }
 
     [Benchmark]
