@@ -3,6 +3,8 @@
 bin/
 obj/
 *.user
+artifacts/
+TestResults/
 
 # MSBuild log
 *.binlog
@@ -21,3 +23,6 @@ Assembly-CSharp*.csproj
 
 # Package File
 *.zip
+
+# JavaScript
+node_modules/

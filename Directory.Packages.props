@@ -9,9 +9,9 @@
   <ItemGroup>
     <GlobalPackageReference Include="DotNetAnalyzers.DocumentationAnalyzers" Version="1.0.0-beta.59" />
     <GlobalPackageReference Include="IDisposableAnalyzers" Version="4.0.8" />
-    <GlobalPackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.12.19" />
-    <GlobalPackageReference Include="Roslynator.Analyzers" Version="4.12.11" />
-    <GlobalPackageReference Include="Roslynator.Formatting.Analyzers" Version="4.12.11" />
+    <GlobalPackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15" />
+    <GlobalPackageReference Include="Roslynator.Analyzers" Version="4.15.0" />
+    <GlobalPackageReference Include="Roslynator.Formatting.Analyzers" Version="4.15.0" />
     <GlobalPackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
   </ItemGroup>
 
@@ -22,19 +22,24 @@
 
   <!-- ベンチマーク -->
   <ItemGroup>
-    <PackageVersion Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
   </ItemGroup>
 
   <!-- ソースジェネレーター -->
   <ItemGroup>
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" />
+    <PackageVersion Include="FToolkit.AnalyzerUtilities" Version="0.1.0.4" />
+
+    <!--
+      バージョン5.0.0は、Visual Studio 2026 バージョン 18.0以降で動作する。
+      https://learn.microsoft.com/visualstudio/extensibility/roslyn-version-support
+    -->
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
   </ItemGroup>
 
   <!-- テスト -->
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.13.1" />
-    <PackageVersion Include="Shouldly" Version="4.3.0" />
-    <PackageVersion Include="xunit.v3" Version="1.0.1" />
+    <PackageVersion Include="TUnit" Version="1.40.10" />
+    <PackageVersion Include="TUnit.Assertions" Version="1.40.10" />
   </ItemGroup>
 
 </Project>
